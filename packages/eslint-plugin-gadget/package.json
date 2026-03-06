@@ -1,0 +1,60 @@
+{
+  "name": "@aurelienbbn/eslint-plugin-gadget",
+  "version": "0.1.0",
+  "description": "ESLint rules for Gadget action files. Validates options, params, and timeoutMS constraints.",
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "gadget",
+    "gadget.dev"
+  ],
+  "homepage": "https://github.com/aurelienbobenrieth/gadget/tree/main/packages/eslint-plugin-gadget",
+  "bugs": "https://github.com/aurelienbobenrieth/gadget/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aurelienbobenrieth/gadget.git",
+    "directory": "packages/eslint-plugin-gadget"
+  },
+  "license": "MIT",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "prepack": "pnpm run build",
+    "test": "vitest run",
+    "test:build": "publint --strict && attw --pack . --ignore-rules missing-export-equals",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@typescript-eslint/utils": "^8.56.0",
+    "minimatch": "^10.2.1"
+  },
+  "devDependencies": {
+    "@vitest/coverage-istanbul": "^4.0.18"
+  },
+  "peerDependencies": {
+    "eslint": ">=9.0.0"
+  },
+  "engines": {
+    "node": ">=18.18"
+  }
+}

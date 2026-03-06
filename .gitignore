@@ -1,0 +1,27 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+*.tgz
+
+# OS artifacts
+nul
+NUL
+Thumbs.db
+.DS_Store
+
+# Agent artifacts
+orchestrator.ps1
+skills-lock.json
+.agents/.output/
+.agents/ref-repos/
+
+# Local workspace artifacts
+packages/*/list.zip
+packages/*/extension.wasm
+packages/*/target/
+packages/*/grammars/
+packages/*/Cargo.lock
+packages/tree-sitter-*/
+packages/*/parser.exp
+packages/*/parser.lib
