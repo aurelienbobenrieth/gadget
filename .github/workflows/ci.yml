@@ -28,3 +28,11 @@ jobs:
 
       - name: Run validation suite
         run: pnpm run ci
+
+      - name: Check generated docs are up to date
+        run: |
+          pnpm run docs:generate
+          git diff --exit-code docs/eslint-plugin/reference/ || {
+            echo "::error::Generated docs are out of date. Run 'pnpm run docs:generate' and commit the result."
+            exit 1
+          }

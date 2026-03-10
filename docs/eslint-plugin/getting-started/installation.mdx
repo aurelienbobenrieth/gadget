@@ -1,0 +1,43 @@
+---
+title: "Installation"
+description: "Add the Gadget ESLint plugin to your project."
+keywords: ["eslint", "gadget", "install", "flat config", "setup"]
+---
+
+## Requirements
+
+| Dependency    | Version                                                 |
+| ------------- | ------------------------------------------------------- |
+| Node.js       | `>= 18.18`                                              |
+| ESLint        | `>= 9`                                                  |
+| Config format | Flat config (`eslint.config.js` or `eslint.config.mjs`) |
+
+<Warning>
+  Legacy `.eslintrc` files are not supported. The plugin uses the ESLint flat config format exclusively.
+</Warning>
+
+## Install
+
+```bash
+yarn add -D @aurelienbbn/eslint-plugin-gadget eslint
+```
+
+## Verify the install
+
+The plugin default export contains everything you need:
+
+```js
+import gadget from "@aurelienbbn/eslint-plugin-gadget";
+
+// gadget.configs.recommended  - warns on most rules, errors on critical ones
+// gadget.configs.strict       - errors on every rule
+// gadget.rules                - all 16 rules
+// gadget.meta.name            - "@aurelienbbn/eslint-plugin-gadget"
+// gadget.meta.version         - current version
+```
+
+## Next step
+
+<Card title="Quick start" icon="bolt" href="/eslint-plugin/getting-started/configuration">
+  Pick a preset and start linting.
+</Card>

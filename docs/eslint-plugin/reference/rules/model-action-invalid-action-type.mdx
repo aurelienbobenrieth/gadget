@@ -1,0 +1,43 @@
+---
+title: "model-action-invalid-action-type"
+sidebarTitle: "model-action-invalid-action-type"
+description: "Disallow invalid actionType values in model action options."
+keywords: ["eslint", "gadget", "model-action-invalid-action-type"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                  | Strict                                     | Auto-fixable                                | Scope              |
+| -------------------------------------------- | ------------------------------------------ | ------------------------------------------- | ------------------ |
+| <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="gray" size="sm">false</Badge> | Model action files |
+
+<Tip>Related Gadget documentation: [Gadget docs](https://docs.gadget.dev/guides/actions/code#actiontype)</Tip>
+
+**What the linter reports:**
+
+> actionType "`value`" must be create, update, delete, or custom.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+export const options: ActionOptions = {
+  // "scheduler" is not valid - must be create, update, delete, or custom
+  actionType: "scheduler",
+};
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+export const options: ActionOptions = {
+  // valid actionType values: create, update, delete, custom
+  actionType: "custom",
+};
+```
+
+  </Tab>
+</Tabs>

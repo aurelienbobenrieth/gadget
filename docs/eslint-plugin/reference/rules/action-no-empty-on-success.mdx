@@ -1,0 +1,39 @@
+---
+title: "action-no-empty-on-success"
+sidebarTitle: "action-no-empty-on-success"
+description: "Disallow empty onSuccess exports in Gadget actions."
+keywords: ["eslint", "gadget", "action-no-empty-on-success"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                  | Strict                                     | Auto-fixable                                | Scope               |
+| -------------------------------------------- | ------------------------------------------ | ------------------------------------------- | ------------------- |
+| <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="green" size="sm">true</Badge> | Gadget action files |
+
+**What the linter reports:**
+
+> Remove empty onSuccess.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+// empty onSuccess adds overhead without doing anything
+export const onSuccess: ActionOnSuccess = async () => {};
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+export const onSuccess: ActionOnSuccess = async ({ record }) => {
+  // onSuccess must contain at least one statement, or be omitted entirely
+  await doSomething(record);
+};
+```
+
+  </Tab>
+</Tabs>

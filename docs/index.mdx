@@ -1,0 +1,45 @@
+---
+title: "@aurelienbbn/gadget"
+description: "Community tools for the Gadget ecosystem. ESLint rules, Gelly language support, and more."
+keywords: ["gadget", "eslint", "gelly", "tooling", "community"]
+---
+
+Opinionated, community-built tools for the [Gadget](https://gadget.dev) ecosystem. This monorepo ships packages that catch mistakes, enforce conventions, and improve the developer experience for Gadget applications.
+
+<Info>
+  These are **community packages**, not published or endorsed by Gadget. Gadget ships its own [framework
+  linter](https://docs.gadget.dev/guides/development-tools/framework-linter) which covers different concerns. These
+  tools complement it with additional static checks.
+</Info>
+
+## Tools
+
+<CardGroup cols={2}>
+  <Card title="ESLint plugin" icon="magnifying-glass" href="/eslint-plugin">
+    16 rules for Gadget action files. Validates options, params, runtime patterns, and enqueue calls with auto-fixes and
+    two presets.
+  </Card>
+</CardGroup>
+
+## Quick start
+
+The ESLint plugin is the first available package:
+
+```bash
+yarn add -D @aurelienbbn/eslint-plugin-gadget eslint
+```
+
+```js title="eslint.config.js"
+import gadget from "@aurelienbbn/eslint-plugin-gadget";
+
+export default [gadget.configs.recommended];
+```
+
+<CardGroup cols={2}>
+  <Card title="About and contributing" icon="circle-info" href="/about">
+    Motivation, roadmap, and how to get involved.
+  </Card>
+  <Card title="GitHub" icon="github" href="https://github.com/aurelienbobenrieth/gadget">
+    Source code, issues, and discussions.
+  </Card>
+</CardGroup>

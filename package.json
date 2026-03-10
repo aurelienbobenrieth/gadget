@@ -1,39 +1,43 @@
 {
-  "name": "gadget",
+  "name": "@aurelienbbn/gadget",
   "private": true,
-  "description": "Open-source home of eslint-plugin-gadget.",
+  "description": "Monorepo of opinionated non-official Gadget packages.",
   "type": "module",
   "scripts": {
     "build": "pnpm --filter @aurelienbbn/eslint-plugin-gadget run build",
+    "changeset": "changeset",
     "ci": "pnpm run build && pnpm run types:check && pnpm run lint:check && pnpm run format:check && pnpm run test && pnpm run test:build",
     "cq:check": "pnpm run types:check && pnpm run lint:check && pnpm run format:check",
     "cq:fix": "pnpm run types:check && pnpm run lint:fix && pnpm run format:fix",
-    "format:check": "prettier --check .",
-    "format:fix": "prettier --write .",
-    "lint:check": "eslint \"packages/eslint-plugin-gadget/src/**/*.ts\"",
-    "lint:fix": "eslint --fix \"packages/eslint-plugin-gadget/src/**/*.ts\"",
+    "docs:generate": "pnpm --filter @aurelienbbn/eslint-plugin-gadget run build && node docs/scripts/generate-eslint-plugin-docs.mjs && oxfmt docs/eslint-plugin/reference/",
+    "format:check": "oxfmt --check",
+    "format:fix": "oxfmt",
+    "lint:check": "oxlint && eslint \"packages/eslint-plugin-gadget/src/**/*.ts\"",
+    "lint:fix": "oxlint --fix && eslint --fix \"packages/eslint-plugin-gadget/src/**/*.ts\"",
     "test": "pnpm --filter @aurelienbbn/eslint-plugin-gadget run test",
     "test:build": "pnpm --filter @aurelienbbn/eslint-plugin-gadget run test:build",
     "types:check": "pnpm -r run typecheck"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
+    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/cli": "^2.30.0",
     "@typescript-eslint/parser": "^8.56.0",
     "@typescript-eslint/rule-tester": "^8.56.0",
     "@typescript-eslint/utils": "^8.56.0",
     "eslint": "^10.0.0",
+    "eslint-plugin-oxlint": "^1.51.0",
     "eslint-plugin-perfectionist": "^5.6.0",
-    "prettier": "^3.8.1",
-    "prettier-plugin-jsdoc": "^1.8.0",
-    "prettier-plugin-packagejson": "^3.0.0",
+    "oxfmt": "^0.37.0",
+    "oxlint": "^1.52.0",
     "publint": "^0.3.17",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.0",
     "vitest": "^4.0.18"
   },
-  "packageManager": "pnpm@10.18.3",
   "engines": {
     "node": ">=22"
-  }
+  },
+  "packageManager": "pnpm@10.18.3"
 }

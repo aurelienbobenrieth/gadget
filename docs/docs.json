@@ -1,0 +1,134 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "@aurelienbbn/gadget",
+  "colors": {
+    "primary": "#4242fc",
+    "light": "#4242fc",
+    "dark": "#4242fc"
+  },
+  "favicon": "/images/gadget-logo.svg",
+  "navigation": {
+    "products": [
+      {
+        "product": "ESLint plugin",
+        "icon": "magnifying-glass",
+        "tabs": [
+          {
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Getting started",
+                "pages": [
+                  "eslint-plugin/index",
+                  "eslint-plugin/getting-started/installation",
+                  "eslint-plugin/getting-started/configuration"
+                ]
+              },
+              {
+                "group": "Concepts",
+                "pages": ["eslint-plugin/guides/how-rules-apply"]
+              }
+            ]
+          },
+          {
+            "tab": "Reference",
+            "groups": [
+              {
+                "group": "Configurations",
+                "pages": ["eslint-plugin/reference/configurations"]
+              },
+              {
+                "group": "Options and params",
+                "pages": [
+                  "eslint-plugin/reference/rules/action-no-invalid-options",
+                  "eslint-plugin/reference/rules/action-no-invalid-params",
+                  "eslint-plugin/reference/rules/action-no-invalid-timeout-ms",
+                  "eslint-plugin/reference/rules/action-require-explicit-return-type",
+                  "eslint-plugin/reference/rules/action-require-timeout-ms-comment",
+                  "eslint-plugin/reference/rules/global-action-no-action-type",
+                  "eslint-plugin/reference/rules/model-action-invalid-action-type",
+                  "eslint-plugin/reference/rules/model-action-no-invalid-trigger",
+                  "eslint-plugin/reference/rules/model-action-no-transactional-timeout-mismatch"
+                ]
+              },
+              {
+                "group": "Runtime safety",
+                "pages": [
+                  "eslint-plugin/reference/rules/action-no-await-handle-result-in-action",
+                  "eslint-plugin/reference/rules/action-no-empty-on-success",
+                  "eslint-plugin/reference/rules/action-no-return-value-in-on-success",
+                  "eslint-plugin/reference/rules/action-require-action-run-type",
+                  "eslint-plugin/reference/rules/action-require-run-with-on-success"
+                ]
+              },
+              {
+                "group": "Enqueue safety",
+                "pages": [
+                  "eslint-plugin/reference/rules/action-no-enqueue-max-concurrency-exceeded",
+                  "eslint-plugin/reference/rules/action-no-implicit-enqueue-retries"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": []
+    }
+  },
+  "navbar": {
+    "links": [
+      {
+        "type": "github",
+        "href": "https://github.com/aurelienbobenrieth/gadget"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "npm",
+      "href": "https://www.npmjs.com/package/@aurelienbbn/eslint-plugin-gadget"
+    }
+  },
+  "contextual": {
+    "options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/aurelienbobenrieth/gadget",
+      "x": "https://x.com/aurelienbbn",
+      "linkedin": "https://www.linkedin.com/in/aurelienbobenrieth",
+      "website": "https://aurelienbbn.com"
+    }
+  },
+  "background": {
+    "color": {
+      "dark": "#141414"
+    }
+  },
+  "appearance": {
+    "default": "system"
+  },
+  "fonts": {
+    "family": "Inter",
+    "heading": {
+      "family": "Inter"
+    },
+    "body": {
+      "family": "Inter"
+    }
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "seo": {
+    "indexing": "all"
+  },
+  "metadata": {
+    "timestamp": true
+  },
+  "interaction": {
+    "drilldown": true
+  }
+}

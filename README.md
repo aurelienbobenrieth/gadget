@@ -1,66 +1,46 @@
-# gadget
+# @aurelienbbn/gadget
 
-`gadget` is the open-source home of `@aurelienbbn/eslint-plugin-gadget`, an ESLint plugin for Gadget action files.
+[![CI](https://github.com/aurelienbobenrieth/gadget/actions/workflows/ci.yml/badge.svg)](https://github.com/aurelienbobenrieth/gadget/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-The repository is intentionally small for the first public release: one published package, one CI pipeline, and a release flow built around npm publishes with provenance from Git tags.
+Community tools for the [Gadget](https://gadget.dev) ecosystem. This monorepo ships packages that catch mistakes, enforce conventions, and improve the developer experience for Gadget applications.
 
-## Package
+> These are **community packages**, not published or endorsed by Gadget. They complement Gadget's own [framework linter](https://docs.gadget.dev/guides/development-tools/framework-linter) with additional static checks.
 
-- npm: `@aurelienbbn/eslint-plugin-gadget`
-- Package docs: `packages/eslint-plugin-gadget/README.md`
-- License: MIT
+## Packages
 
-## Repository layout
+| Package                                                              | Version                                                                                                                                       | Description                             |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [`@aurelienbbn/eslint-plugin-gadget`](packages/eslint-plugin-gadget) | [![npm](https://img.shields.io/npm/v/@aurelienbbn/eslint-plugin-gadget.svg)](https://www.npmjs.com/package/@aurelienbbn/eslint-plugin-gadget) | 16 ESLint rules for Gadget action files |
 
-```text
-.
-|- packages/
-|  \- eslint-plugin-gadget/
-|- .github/workflows/
-|- CONTRIBUTING.md
-|- SECURITY.md
-\- README.md
-```
-
-## Local development
-
-Prerequisites:
-
-- Node `22`
-- pnpm `10`
+## Quick start
 
 ```bash
-pnpm install
-pnpm run ci
+pnpm add -D @aurelienbbn/eslint-plugin-gadget eslint
 ```
 
-Useful commands:
+```js
+// eslint.config.js
+import gadget from "@aurelienbbn/eslint-plugin-gadget";
 
-```bash
-pnpm run build
-pnpm run test
-pnpm run cq:check
-pnpm run format:fix
+export default [gadget.configs.recommended];
 ```
 
-## Release process
+## Documentation
 
-- Releases are manual and tag-driven.
-- Nothing is published on branch pushes.
-- Publishing only happens when a `v*.*.*` tag points at a commit already on `main`.
-- The release workflow runs the full validation suite before publishing to npm with provenance.
-
-Example:
-
-```bash
-git tag v0.1.0
-git push origin v0.1.0
-```
+Full documentation is available at **[gadget.aurelienbbn.com](https://gadget.aurelienbbn.com)**, including rule reference pages, configuration guides, and code examples.
 
 ## Contributing
 
-Start with `CONTRIBUTING.md` for setup, scope, and quality expectations.
+Pull requests are not accepted at this time. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to participate.
+
+- [Open an issue](https://github.com/aurelienbobenrieth/gadget/issues) to report bugs or request rules.
+- [Start a discussion](https://github.com/aurelienbobenrieth/gadget/discussions) for broader ideas or questions.
 
 ## Security
 
-Please report vulnerabilities privately as described in `SECURITY.md`.
+Please report vulnerabilities privately as described in [SECURITY.md](SECURITY.md).
+
+## License
+
+[MIT](LICENSE)

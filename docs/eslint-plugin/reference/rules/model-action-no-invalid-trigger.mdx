@@ -1,0 +1,43 @@
+---
+title: "model-action-no-invalid-trigger"
+sidebarTitle: "model-action-no-invalid-trigger"
+description: "Disallow scheduler triggers in model action options."
+keywords: ["eslint", "gadget", "model-action-no-invalid-trigger"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                  | Strict                                     | Auto-fixable                                | Scope              |
+| -------------------------------------------- | ------------------------------------------ | ------------------------------------------- | ------------------ |
+| <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="green" size="sm">true</Badge> | Model action files |
+
+<Tip>Related Gadget documentation: [Gadget docs](https://docs.gadget.dev/guides/actions#scheduler-trigger)</Tip>
+
+**What the linter reports:**
+
+> Model actions cannot use scheduler triggers.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+export const options: ActionOptions = {
+  // scheduler triggers are only valid in global actions
+  triggers: [{ type: "scheduler" }],
+};
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+export const options: ActionOptions = {
+  // model actions support api, shopify, and other non-scheduler triggers
+  triggers: [{ type: "api" }],
+};
+```
+
+  </Tab>
+</Tabs>

@@ -1,0 +1,66 @@
+---
+title: "Quick start"
+description: "Choose a preset and configure the Gadget ESLint plugin in your flat config."
+keywords: ["eslint", "gadget", "recommended", "strict", "configuration", "quick start"]
+---
+
+The plugin ships two presets. Both register the plugin under the `gadget` namespace, so rules appear as `gadget/<rule-name>` in ESLint output.
+
+## Recommended preset
+
+Three critical rules run at `error`. The remaining 13 run at `warn` so they surface issues without blocking CI.
+
+```js title="eslint.config.js"
+import gadget from "@aurelienbbn/eslint-plugin-gadget";
+
+export default [gadget.configs.recommended];
+```
+
+## Strict preset
+
+Every rule runs at `error`. Use this when you want the full rule set to block CI.
+
+```js title="eslint.config.js"
+import gadget from "@aurelienbbn/eslint-plugin-gadget";
+
+export default [gadget.configs.strict];
+```
+
+## Override individual rules
+
+Start from a preset and adjust specific rules as needed:
+
+```js title="eslint.config.js"
+import gadget from "@aurelienbbn/eslint-plugin-gadget";
+
+export default [
+  gadget.configs.recommended,
+  {
+    rules: {
+      "gadget/action-require-timeout-ms-comment": "off",
+    },
+  },
+];
+```
+
+<Tip>
+  Check the [configurations reference](/eslint-plugin/reference/configurations) for the full severity matrix across both
+  presets.
+</Tip>
+
+## Combine with other configs
+
+The plugin config is a standard flat config object. It composes with any other ESLint config:
+
+```js title="eslint.config.js"
+import gadget from "@aurelienbbn/eslint-plugin-gadget";
+import tseslint from "typescript-eslint";
+
+export default [...tseslint.configs.recommended, gadget.configs.recommended];
+```
+
+## Next step
+
+<Card title="How rules apply" icon="filter" href="/eslint-plugin/guides/how-rules-apply">
+  Understand which files the plugin inspects and why some rules target all files.
+</Card>

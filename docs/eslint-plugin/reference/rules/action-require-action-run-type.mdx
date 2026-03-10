@@ -1,0 +1,48 @@
+---
+title: "action-require-action-run-type"
+sidebarTitle: "action-require-action-run-type"
+description: "Require Gadget action run and onSuccess exports to use generated type annotations."
+keywords: ["eslint", "gadget", "action-require-action-run-type"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                  | Strict                                     | Auto-fixable                                | Scope               |
+| -------------------------------------------- | ------------------------------------------ | ------------------------------------------- | ------------------- |
+| <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="green" size="sm">true</Badge> | Gadget action files |
+
+**What the linter reports:**
+
+- Use ActionOnSuccess for onSuccess.
+- Use ActionRun for run.
+- Type onSuccess as ActionOnSuccess.
+- Type run as ActionRun.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+import { applyParams, save } from "gadget-server";
+// missing ActionRun type annotation
+export const run = async ({ params, record }) => {
+  await applyParams(record, params);
+  await save(record);
+};
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+import { applyParams, save } from "gadget-server";
+// ActionRun provides type-safe params and record
+export const run: ActionRun = async ({ params, record }) => {
+  await applyParams(record, params);
+  await save(record);
+};
+```
+
+  </Tab>
+</Tabs>

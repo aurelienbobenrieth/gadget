@@ -1,0 +1,40 @@
+---
+title: "action-require-timeout-ms-comment"
+sidebarTitle: "action-require-timeout-ms-comment"
+description: "Require a trailing inline comment describing the duration on the timeoutMS property in Gadget action options."
+keywords: ["eslint", "gadget", "action-require-timeout-ms-comment"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                  | Strict                                     | Auto-fixable                                | Scope               |
+| -------------------------------------------- | ------------------------------------------ | ------------------------------------------- | ------------------- |
+| <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="green" size="sm">true</Badge> | Gadget action files |
+
+**What the linter reports:**
+
+> Add an inline duration comment to timeoutMS.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+export const options: ActionOptions = {
+  // missing inline duration comment
+  timeoutMS: 50000,
+};
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+export const options: ActionOptions = {
+  timeoutMS: 50000, // 50 seconds
+};
+```
+
+  </Tab>
+</Tabs>

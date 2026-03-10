@@ -2,21 +2,21 @@ name: Release
 
 on:
   push:
-    tags:
-      - "v*.*.*"
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release:
-    name: Publish to npm
+  version:
+    name: Version packages
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      id-token: write
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -26,24 +26,15 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Verify tag commit is on main
-        run: |
-          git fetch origin main --depth=1
-          git merge-base --is-ancestor "$GITHUB_SHA" "origin/main"
-
-      - name: Validate tag matches package version
-        run: |
-          node -e "const { readFileSync } = require('node:fs'); const pkg = JSON.parse(readFileSync('packages/eslint-plugin-gadget/package.json', 'utf8')); const tag = process.env.GITHUB_REF_NAME; if (tag !== `v${pkg.version}`) { console.error(`Tag ${tag} does not match package version v${pkg.version}`); process.exit(1); }"
-
-      - name: Run validation suite
-        run: pnpm run ci
-
-      - name: Publish package
-        run: pnpm --filter @aurelienbbn/eslint-plugin-gadget publish --access public --provenance --no-git-checks
+      - name: Create or update version PR
+        uses: changesets/action@v1
+        with:
+          version: pnpm changeset version
+          title: "chore: version packages"
+          commit: "chore: version packages"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

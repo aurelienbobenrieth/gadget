@@ -1,0 +1,44 @@
+---
+title: "action-no-return-value-in-on-success"
+sidebarTitle: "action-no-return-value-in-on-success"
+description: "Disallow returning a value from onSuccess in Gadget actions."
+keywords: ["eslint", "gadget", "action-no-return-value-in-on-success"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                  | Strict                                     | Auto-fixable                                | Scope               |
+| -------------------------------------------- | ------------------------------------------ | ------------------------------------------- | ------------------- |
+| <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="green" size="sm">true</Badge> | Gadget action files |
+
+<Tip>Related Gadget documentation: [Gadget docs](https://docs.gadget.dev/guides/actions/code#returntype)</Tip>
+
+**What the linter reports:**
+
+> onSuccess return values are ignored. Use return; or remove it.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+export const onSuccess: ActionOnSuccess = async ({ record }) => {
+  await notify(record);
+  // return values in onSuccess are silently ignored by Gadget
+  return someVariable;
+};
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+export const onSuccess: ActionOnSuccess = async ({ record }) => {
+  await notify(record);
+  // no return value - onSuccess results are always discarded
+};
+```
+
+  </Tab>
+</Tabs>

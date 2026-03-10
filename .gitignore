@@ -25,3 +25,4 @@ packages/*/Cargo.lock
 packages/tree-sitter-*/
 packages/*/parser.exp
 packages/*/parser.lib
+.agents

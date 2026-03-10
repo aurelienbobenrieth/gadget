@@ -1,0 +1,47 @@
+---
+title: "Configurations"
+description: "Severity matrix for the recommended and strict presets."
+keywords: ["eslint", "gadget", "recommended", "strict", "configurations"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+The plugin ships two presets. Both register the plugin under the `gadget` namespace.
+
+| Preset        | Description                                                                          |
+| ------------- | ------------------------------------------------------------------------------------ |
+| `recommended` | Three critical rules at `error`, the rest at `warn`. Good default for most projects. |
+| `strict`      | Every rule at `error`. Use when you want the full set to block CI.                   |
+
+## Severity matrix
+
+### Options and params
+
+| Rule                                                                                                                              | Recommended                                  | Strict                                     |
+| --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------ |
+| [`action-no-invalid-options`](/eslint-plugin/reference/rules/action-no-invalid-options)                                           | <Badge color="red" size="sm">error</Badge>   | <Badge color="red" size="sm">error</Badge> |
+| [`action-no-invalid-params`](/eslint-plugin/reference/rules/action-no-invalid-params)                                             | <Badge color="red" size="sm">error</Badge>   | <Badge color="red" size="sm">error</Badge> |
+| [`action-no-invalid-timeout-ms`](/eslint-plugin/reference/rules/action-no-invalid-timeout-ms)                                     | <Badge color="red" size="sm">error</Badge>   | <Badge color="red" size="sm">error</Badge> |
+| [`action-require-explicit-return-type`](/eslint-plugin/reference/rules/action-require-explicit-return-type)                       | <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> |
+| [`action-require-timeout-ms-comment`](/eslint-plugin/reference/rules/action-require-timeout-ms-comment)                           | <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> |
+| [`global-action-no-action-type`](/eslint-plugin/reference/rules/global-action-no-action-type)                                     | <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> |
+| [`model-action-invalid-action-type`](/eslint-plugin/reference/rules/model-action-invalid-action-type)                             | <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> |
+| [`model-action-no-invalid-trigger`](/eslint-plugin/reference/rules/model-action-no-invalid-trigger)                               | <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> |
+| [`model-action-no-transactional-timeout-mismatch`](/eslint-plugin/reference/rules/model-action-no-transactional-timeout-mismatch) | <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> |
+
+### Runtime safety
+
+| Rule                                                                                                                | Recommended                                  | Strict                                     |
+| ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------ |
+| [`action-no-await-handle-result-in-action`](/eslint-plugin/reference/rules/action-no-await-handle-result-in-action) | <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> |
+| [`action-no-empty-on-success`](/eslint-plugin/reference/rules/action-no-empty-on-success)                           | <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> |
+| [`action-no-return-value-in-on-success`](/eslint-plugin/reference/rules/action-no-return-value-in-on-success)       | <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> |
+| [`action-require-action-run-type`](/eslint-plugin/reference/rules/action-require-action-run-type)                   | <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> |
+| [`action-require-run-with-on-success`](/eslint-plugin/reference/rules/action-require-run-with-on-success)           | <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> |
+
+### Enqueue safety
+
+| Rule                                                                                                                      | Recommended                                  | Strict                                     |
+| ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------ |
+| [`action-no-enqueue-max-concurrency-exceeded`](/eslint-plugin/reference/rules/action-no-enqueue-max-concurrency-exceeded) | <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> |
+| [`action-no-implicit-enqueue-retries`](/eslint-plugin/reference/rules/action-no-implicit-enqueue-retries)                 | <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> |

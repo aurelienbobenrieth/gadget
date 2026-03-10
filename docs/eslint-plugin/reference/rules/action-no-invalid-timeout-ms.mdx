@@ -1,0 +1,43 @@
+---
+title: "action-no-invalid-timeout-ms"
+sidebarTitle: "action-no-invalid-timeout-ms"
+description: "Enforce that timeoutMS in Gadget action options does not exceed 900000ms (15 minutes)."
+keywords: ["eslint", "gadget", "action-no-invalid-timeout-ms"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                | Strict                                     | Auto-fixable                                | Scope               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------- | ------------------- |
+| <Badge color="red" size="sm">error</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="green" size="sm">true</Badge> | Gadget action files |
+
+<Tip>Related Gadget documentation: [Gadget docs](https://docs.gadget.dev/guides/actions/code#timeoutms)</Tip>
+
+**What the linter reports:**
+
+> timeoutMS `value` exceeds Gadget's max of 900000ms.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+export const options: ActionOptions = {
+  // 950000ms exceeds the max of 900000ms (15 minutes)
+  timeoutMS: 950000,
+};
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+export const options: ActionOptions = {
+  // maximum allowed value is 900000ms (15 minutes)
+  timeoutMS: 900000,
+};
+```
+
+  </Tab>
+</Tabs>
