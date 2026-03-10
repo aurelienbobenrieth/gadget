@@ -1,0 +1,44 @@
+---
+title: "action-require-run-with-on-success"
+sidebarTitle: "action-require-run-with-on-success"
+description: "Require a run export when onSuccess is exported in Gadget actions."
+keywords: ["eslint", "gadget", "action-require-run-with-on-success"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                  | Strict                                     | Auto-fixable                                | Scope               |
+| -------------------------------------------- | ------------------------------------------ | ------------------------------------------- | ------------------- |
+| <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="gray" size="sm">false</Badge> | Gadget action files |
+
+<Tip>Related Gadget documentation: [Gadget docs](https://docs.gadget.dev/guides/actions/code#onsuccess-function)</Tip>
+
+**What the linter reports:**
+
+> onSuccess requires a run export.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+// onSuccess cannot exist without a run export
+export const onSuccess: ActionOnSuccess = async ({ record }) => {
+  await doSomething(record);
+};
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+// run must be defined alongside onSuccess
+export const run: ActionRun = async ({ params }) => {};
+export const onSuccess: ActionOnSuccess = async ({ record }) => {
+  await doSomething(record);
+};
+```
+
+  </Tab>
+</Tabs>

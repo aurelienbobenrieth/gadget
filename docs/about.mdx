@@ -1,6 +1,6 @@
 ---
 title: "About this project"
-description: "Why this ESLint plugin exists, who maintains it, and how you can contribute."
+description: "Why this ESLint plugin exists, who maintains it, and how to get involved."
 keywords: ["gadget", "eslint", "community", "contributing"]
 ---
 
@@ -16,18 +16,22 @@ This plugin encodes those rules as ESLint checks so mistakes surface in the edit
 
 This is an **opinionated, community-maintained** package. It is not published or endorsed by Gadget.
 
+Gadget ships its own [framework linter](https://docs.gadget.dev/guides/development-tools/framework-linter) which covers a different set of concerns. This plugin complements it with additional static checks for action file patterns, options validation, and enqueue safety.
+
 It was built from hands-on experience shipping Gadget applications and watching the same classes of errors repeat across projects. The goal is to save other developers (and their agents) the time spent debugging issues that a linter can catch statically.
 
 ## What is coming
 
-The `@aurelienbbn/gadget` monorepo is growing. More tools for the Gadget ecosystem are on the way - including editor integrations, language support, and UI components. Follow the [GitHub repository](https://github.com/aurelienbobenrieth/gadget) for updates.
+The `@aurelienbbn/gadget` monorepo is growing. More tools for the Gadget ecosystem are on the way - including a Gelly parser, formatter, language server, and editor extensions. Follow the [GitHub repository](https://github.com/aurelienbobenrieth/gadget) for updates.
 
-## Feedback and contributions
+## Get involved
 
-This plugin improves with community input. If a rule misfires, a fixable case is missing, or a new pattern should be covered:
+This project improves with community input. If a rule misfires, a fixable case is missing, or a new pattern should be covered:
 
 - Open an [issue](https://github.com/aurelienbobenrieth/gadget/issues) to report bugs or request rules.
-- Submit a [pull request](https://github.com/aurelienbobenrieth/gadget/pulls) - the codebase is straightforward and well-tested.
-- Start a [discussion](https://github.com/aurelienbobenrieth/gadget/discussions) for broader ideas.
+- Start a [discussion](https://github.com/aurelienbobenrieth/gadget/discussions) for broader ideas or questions.
 
-Every rule in this plugin has full test coverage and auto-fix support where feasible. Contributions that follow that pattern are welcome.
+<Note>
+  Pull requests are not accepted at this time. This is a personal project that happens to be open source. Contributions
+  may be accepted in the future as the project matures.
+</Note>

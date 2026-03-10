@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 120,
+  "semi": true,
+  "singleQuote": false,
+  "trailingComma": "all",
+  "tabWidth": 2,
+  "arrowParens": "always",
+  "sortPackageJson": true,
+  "ignorePatterns": [
+    "**/dist/**",
+    "**/node_modules/**",
+    "**/coverage/**",
+    "pnpm-lock.yaml",
+    ".agents/ref-repos/**",
+    ".agents/skills/**",
+    "**/*.hbs"
+  ]
+}

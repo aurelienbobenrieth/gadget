@@ -1,0 +1,44 @@
+---
+title: "global-action-no-action-type"
+sidebarTitle: "global-action-no-action-type"
+description: "Disallow actionType in global action options."
+keywords: ["eslint", "gadget", "global-action-no-action-type"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                  | Strict                                     | Auto-fixable                                | Scope               |
+| -------------------------------------------- | ------------------------------------------ | ------------------------------------------- | ------------------- |
+| <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="green" size="sm">true</Badge> | Global action files |
+
+<Tip>Related Gadget documentation: [Gadget docs](https://docs.gadget.dev/guides/actions/code#actiontype)</Tip>
+
+**What the linter reports:**
+
+> Remove actionType from global actions.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/actions/sendEmail.ts"
+export const options: ActionOptions = {
+  // actionType only applies to model actions, not global actions
+  actionType: "create",
+  returnType: true,
+};
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/actions/sendEmail.ts"
+export const options: ActionOptions = {
+  // global actions do not support actionType
+  returnType: true,
+};
+```
+
+  </Tab>
+</Tabs>

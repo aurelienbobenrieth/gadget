@@ -1,7 +1,7 @@
 ---
-title: "Configuration"
+title: "Quick start"
 description: "Choose a preset and configure the Gadget ESLint plugin in your flat config."
-keywords: ["eslint", "gadget", "recommended", "strict", "configuration"]
+keywords: ["eslint", "gadget", "recommended", "strict", "configuration", "quick start"]
 ---
 
 The plugin ships two presets. Both register the plugin under the `gadget` namespace, so rules appear as `gadget/<rule-name>` in ESLint output.
@@ -44,7 +44,8 @@ export default [
 ```
 
 <Tip>
-  Check the [configurations reference](/reference/configurations) for the full severity matrix across both presets.
+  Check the [configurations reference](/eslint-plugin/reference/configurations) for the full severity matrix across both
+  presets.
 </Tip>
 
 ## Combine with other configs
@@ -60,6 +61,6 @@ export default [...tseslint.configs.recommended, gadget.configs.recommended];
 
 ## Next step
 
-<Card title="How rules apply" icon="filter" href="/guides/how-rules-apply">
+<Card title="How rules apply" icon="filter" href="/eslint-plugin/guides/how-rules-apply">
   Understand which files the plugin inspects and why some rules target all files.
 </Card>

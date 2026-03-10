@@ -1,0 +1,48 @@
+---
+title: "action-no-await-handle-result-in-action"
+sidebarTitle: "action-no-await-handle-result-in-action"
+description: "Disallow awaiting handle.result() inside run or onSuccess exports in Gadget actions."
+keywords: ["eslint", "gadget", "action-no-await-handle-result-in-action"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                  | Strict                                     | Auto-fixable                                | Scope               |
+| -------------------------------------------- | ------------------------------------------ | ------------------------------------------- | ------------------- |
+| <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="gray" size="sm">false</Badge> | Gadget action files |
+
+<Tip>
+  Related Gadget documentation: [Gadget
+  docs](https://docs.gadget.dev/guides/actions/background-actions#considerations-for-await-handle-result)
+</Tip>
+
+**What the linter reports:**
+
+- Do not await handle.result() in onSuccess, it bills the full wait time.
+- Do not await handle.result() in run, it causes GGT_TRANSACTION_TIMEOUT.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+export const run = async () => {
+  const handle = await api.enqueue(api.publish, {});
+  // awaiting the result blocks the transaction and causes GGT_TRANSACTION_TIMEOUT
+  await handle.result();
+};
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+export const run = async () => {
+  // enqueue the background action and move on
+  await api.enqueue(api.publish, {});
+};
+```
+
+  </Tab>
+</Tabs>

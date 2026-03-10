@@ -10,14 +10,20 @@
   ],
   "homepage": "https://github.com/aurelienbobenrieth/gadget/tree/main/packages/eslint-plugin-gadget",
   "bugs": "https://github.com/aurelienbobenrieth/gadget/issues",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aurelienbobenrieth/gadget.git",
     "directory": "packages/eslint-plugin-gadget"
   },
-  "license": "MIT",
-  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": {
@@ -31,12 +37,6 @@
     },
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsup",
     "prepack": "pnpm run build",

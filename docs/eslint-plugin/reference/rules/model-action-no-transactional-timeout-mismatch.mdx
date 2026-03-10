@@ -1,0 +1,48 @@
+---
+title: "model-action-no-transactional-timeout-mismatch"
+sidebarTitle: "model-action-no-transactional-timeout-mismatch"
+description: "Disallow timeoutMS above 5000ms on model actions without explicitly setting transactional: false."
+keywords: ["eslint", "gadget", "model-action-no-transactional-timeout-mismatch"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                  | Strict                                     | Auto-fixable                                | Scope              |
+| -------------------------------------------- | ------------------------------------------ | ------------------------------------------- | ------------------ |
+| <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="gray" size="sm">false</Badge> | Model action files |
+
+<Tip>
+  Related Gadget documentation: [Gadget
+  docs](https://docs.gadget.dev/guides/actions/code#gadgettransaction-callback-params)
+</Tip>
+
+**What the linter reports:**
+
+> timeoutMS `value`ms has no effect on transactional model actions above 5000ms.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+export const options: ActionOptions = {
+  // 30000ms has no effect when transactional is true (max 5000ms)
+  timeoutMS: 30000,
+  transactional: true,
+};
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+export const options: ActionOptions = {
+  // set transactional: false to use timeouts above 5000ms
+  timeoutMS: 30000,
+  transactional: false,
+};
+```
+
+  </Tab>
+</Tabs>

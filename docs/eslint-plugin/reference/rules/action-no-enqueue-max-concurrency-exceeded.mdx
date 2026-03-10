@@ -1,0 +1,42 @@
+---
+title: "action-no-enqueue-max-concurrency-exceeded"
+sidebarTitle: "action-no-enqueue-max-concurrency-exceeded"
+description: "Disallow maxConcurrency values exceeding Gadget's hard limit of 100 in api.enqueue queue options."
+keywords: ["eslint", "gadget", "action-no-enqueue-max-concurrency-exceeded"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                  | Strict                                     | Auto-fixable                                | Scope                                                 |
+| -------------------------------------------- | ------------------------------------------ | ------------------------------------------- | ----------------------------------------------------- |
+| <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="gray" size="sm">false</Badge> | All files (any file containing `api.enqueue()` calls) |
+
+<Tip>
+  Related Gadget documentation: [Gadget
+  docs](https://docs.gadget.dev/guides/actions/background-actions#background-action-limits)
+</Tip>
+
+**What the linter reports:**
+
+> maxConcurrency `value` exceeds Gadget's limit of 100.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+// 101 exceeds Gadget's hard limit of 100
+api.enqueue(api.publish, {}, { queue: { name: "q", maxConcurrency: 101 } });
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+// maxConcurrency must be 100 or less
+api.enqueue(api.publish, {}, { queue: { name: "q", maxConcurrency: 100 } });
+```
+
+  </Tab>
+</Tabs>

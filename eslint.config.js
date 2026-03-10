@@ -1,3 +1,4 @@
+import oxlintPlugin from "eslint-plugin-oxlint";
 import perfectionistPlugin from "eslint-plugin-perfectionist";
 import tseslint from "typescript-eslint";
 
@@ -18,4 +19,6 @@ export default tseslint.config(
       "perfectionist/sort-modules": "off",
     },
   },
+  // Disables every ESLint rule already covered by oxlint. Must be last.
+  ...oxlintPlugin.buildFromOxlintConfigFile("./.oxlintrc.json"),
 );

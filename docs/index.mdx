@@ -1,44 +1,35 @@
 ---
-title: "Gadget ESLint plugin"
-description: "Catch Gadget action mistakes before they reach production. An opinionated ESLint plugin with 16 rules, auto-fixes, and two ready-made presets."
-keywords: ["eslint", "gadget", "actions", "linting", "plugin"]
+title: "@aurelienbbn/gadget"
+description: "Community tools for the Gadget ecosystem. ESLint rules, Gelly language support, and more."
+keywords: ["gadget", "eslint", "gelly", "tooling", "community"]
 ---
 
-An opinionated, community-built ESLint plugin that catches common mistakes in [Gadget](https://gadget.dev) action files. It ships 16 rules across three categories, auto-fixes where possible, and offers `recommended` and `strict` presets.
+Opinionated, community-built tools for the [Gadget](https://gadget.dev) ecosystem. This monorepo ships packages that catch mistakes, enforce conventions, and improve the developer experience for Gadget applications.
+
+<Info>
+  These are **community packages**, not published or endorsed by Gadget. Gadget ships its own [framework
+  linter](https://docs.gadget.dev/guides/development-tools/framework-linter) which covers different concerns. These
+  tools complement it with additional static checks.
+</Info>
+
+## Tools
 
 <CardGroup cols={2}>
-  <Card title="Install" icon="download" href="/getting-started/installation">
-    Add the package and confirm the requirements.
+  <Card title="ESLint plugin" icon="magnifying-glass" href="/eslint-plugin">
+    16 rules for Gadget action files. Validates options, params, runtime patterns, and enqueue calls with auto-fixes and
+    two presets.
   </Card>
-  <Card title="Configure" icon="sliders" href="/getting-started/configuration">
-    Pick a preset and start linting in minutes.
-  </Card>
-  <Card title="Configurations" icon="list-check" href="/reference/configurations">
-    Compare recommended vs. strict severity for every rule.
-  </Card>
-  <Card title="About" icon="circle-info" href="/about">
-    Why this plugin exists and how to contribute.
-  </Card>
-</CardGroup>
-
-## What it checks
-
-<CardGroup cols={3}>
-  <Card title="Options and params" icon="gear">
-    Validates that your `options` and `params` exports contain only values Gadget can serialize and process.
-  </Card>
-  <Card title="Runtime safety" icon="shield-check">
-    Prevents empty handlers, missing types, and patterns that cause transaction timeouts or billing surprises.
-  </Card>
-  <Card title="Enqueue safety" icon="arrow-right-to-bracket">
-    Enforces explicit retries and concurrency limits on `api.enqueue()` calls.
+  <Card title="Gelly language" icon="code" tag="Coming soon">
+    Parser, formatter, language server, and editor extensions for the Gelly schema language.
   </Card>
 </CardGroup>
 
 ## Quick start
 
+The ESLint plugin is the first available package:
+
 ```bash
-pnpm add -D @aurelienbbn/eslint-plugin-gadget eslint
+yarn add -D @aurelienbbn/eslint-plugin-gadget eslint
 ```
 
 ```js title="eslint.config.js"
@@ -47,4 +38,11 @@ import gadget from "@aurelienbbn/eslint-plugin-gadget";
 export default [gadget.configs.recommended];
 ```
 
-Run `eslint .` and the plugin handles the rest - it only activates on Gadget action file paths.
+<CardGroup cols={2}>
+  <Card title="About and contributing" icon="circle-info" href="/about">
+    Motivation, roadmap, and how to get involved.
+  </Card>
+  <Card title="GitHub" icon="github" href="https://github.com/aurelienbobenrieth/gadget">
+    Source code, issues, and discussions.
+  </Card>
+</CardGroup>

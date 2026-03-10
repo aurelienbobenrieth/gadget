@@ -1,0 +1,46 @@
+---
+title: "action-no-invalid-options"
+sidebarTitle: "action-no-invalid-options"
+description: "Enforce that the Gadget action options export contains only valid JSON-serializable literals."
+keywords: ["eslint", "gadget", "action-no-invalid-options"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                | Strict                                     | Auto-fixable                                | Scope               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------- | ------------------- |
+| <Badge color="red" size="sm">error</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="green" size="sm">true</Badge> | Gadget action files |
+
+<Tip>Related Gadget documentation: [Gadget docs](https://docs.gadget.dev/guides/actions/code#options-object)</Tip>
+
+**What the linter reports:**
+
+- Option keys must be plain identifiers or string literals.
+- Option values must be JSON-serializable literals.
+- Numeric separator `raw` is not valid JSON. Use `fixed`.
+- Shorthand properties are not allowed in options.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+export const options: ActionOptions = {
+  // numeric separators are not valid JSON
+  timeoutMS: 90_000,
+};
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+export const options: ActionOptions = {
+  // use plain numeric literals without separators
+  timeoutMS: 90000,
+};
+```
+
+  </Tab>
+</Tabs>

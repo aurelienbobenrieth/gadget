@@ -1,0 +1,51 @@
+---
+title: "action-no-invalid-params"
+sidebarTitle: "action-no-invalid-params"
+description: "Enforce that Gadget action params export only uses supported JSON schema types and properties."
+keywords: ["eslint", "gadget", "action-no-invalid-params"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                | Strict                                     | Auto-fixable                                | Scope               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------- | ------------------- |
+| <Badge color="red" size="sm">error</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="gray" size="sm">false</Badge> | Gadget action files |
+
+<Tip>
+  Related Gadget documentation: [Gadget docs](https://docs.gadget.dev/guides/actions/code#adding-parameters-to-actions)
+</Tip>
+
+**What the linter reports:**
+
+- "additionalProperties" for "`name`" must be true or false.
+- Parameter "`name`" must define a type (`supportedTypes`).
+- Parameter "`name`" must be an object with a "type" property.
+- "properties" for "`name`" must be an object literal.
+- "type" for "`name`" must be a string literal.
+- Parameter "`name`" uses unsupported type "`type`". Supported: `supportedTypes`.
+- Parameter "`name`" uses unsupported property "`property`".
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+export const params = {
+  // "date" is not a supported type - use "string", "number", "boolean", or "object"
+  name: { type: "date" },
+};
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+export const params = {
+  // supported types: "string", "number", "boolean", "object"
+  name: { type: "string" },
+};
+```
+
+  </Tab>
+</Tabs>

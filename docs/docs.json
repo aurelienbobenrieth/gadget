@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Gadget ESLint plugin",
+  "name": "@aurelienbbn/gadget",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -9,74 +9,73 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "tabs": [
+    "products": [
       {
-        "tab": "Guides",
-        "groups": [
+        "product": "ESLint plugin",
+        "icon": "magnifying-glass",
+        "tabs": [
           {
-            "group": "Getting started",
-            "pages": ["index", "about", "getting-started/installation", "getting-started/configuration"]
-          },
-          {
-            "group": "Concepts",
-            "pages": ["guides/how-rules-apply"]
-          }
-        ]
-      },
-      {
-        "tab": "Reference",
-        "groups": [
-          {
-            "group": "Configurations",
-            "pages": ["reference/configurations"]
-          },
-          {
-            "group": "Options and params",
-            "pages": [
-              "reference/rules/action-no-invalid-options",
-              "reference/rules/action-no-invalid-params",
-              "reference/rules/action-no-invalid-timeout-ms",
-              "reference/rules/action-require-explicit-return-type",
-              "reference/rules/action-require-timeout-ms-comment",
-              "reference/rules/global-action-no-action-type",
-              "reference/rules/model-action-invalid-action-type",
-              "reference/rules/model-action-no-invalid-trigger",
-              "reference/rules/model-action-no-transactional-timeout-mismatch"
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Getting started",
+                "pages": [
+                  "eslint-plugin/index",
+                  "eslint-plugin/getting-started/installation",
+                  "eslint-plugin/getting-started/configuration"
+                ]
+              },
+              {
+                "group": "Concepts",
+                "pages": ["eslint-plugin/guides/how-rules-apply"]
+              }
             ]
           },
           {
-            "group": "Runtime safety",
-            "pages": [
-              "reference/rules/action-no-await-handle-result-in-action",
-              "reference/rules/action-no-empty-on-success",
-              "reference/rules/action-no-return-value-in-on-success",
-              "reference/rules/action-require-action-run-type",
-              "reference/rules/action-require-run-with-on-success"
-            ]
-          },
-          {
-            "group": "Enqueue safety",
-            "pages": [
-              "reference/rules/action-no-enqueue-max-concurrency-exceeded",
-              "reference/rules/action-no-implicit-enqueue-retries"
+            "tab": "Reference",
+            "groups": [
+              {
+                "group": "Configurations",
+                "pages": ["eslint-plugin/reference/configurations"]
+              },
+              {
+                "group": "Options and params",
+                "pages": [
+                  "eslint-plugin/reference/rules/action-no-invalid-options",
+                  "eslint-plugin/reference/rules/action-no-invalid-params",
+                  "eslint-plugin/reference/rules/action-no-invalid-timeout-ms",
+                  "eslint-plugin/reference/rules/action-require-explicit-return-type",
+                  "eslint-plugin/reference/rules/action-require-timeout-ms-comment",
+                  "eslint-plugin/reference/rules/global-action-no-action-type",
+                  "eslint-plugin/reference/rules/model-action-invalid-action-type",
+                  "eslint-plugin/reference/rules/model-action-no-invalid-trigger",
+                  "eslint-plugin/reference/rules/model-action-no-transactional-timeout-mismatch"
+                ]
+              },
+              {
+                "group": "Runtime safety",
+                "pages": [
+                  "eslint-plugin/reference/rules/action-no-await-handle-result-in-action",
+                  "eslint-plugin/reference/rules/action-no-empty-on-success",
+                  "eslint-plugin/reference/rules/action-no-return-value-in-on-success",
+                  "eslint-plugin/reference/rules/action-require-action-run-type",
+                  "eslint-plugin/reference/rules/action-require-run-with-on-success"
+                ]
+              },
+              {
+                "group": "Enqueue safety",
+                "pages": [
+                  "eslint-plugin/reference/rules/action-no-enqueue-max-concurrency-exceeded",
+                  "eslint-plugin/reference/rules/action-no-implicit-enqueue-retries"
+                ]
+              }
             ]
           }
         ]
       }
     ],
     "global": {
-      "anchors": [
-        {
-          "anchor": "npm",
-          "href": "https://www.npmjs.com/package/@aurelienbbn/eslint-plugin-gadget",
-          "icon": "package"
-        },
-        {
-          "anchor": "GitHub",
-          "href": "https://github.com/aurelienbobenrieth/gadget/tree/main/packages/eslint-plugin-gadget",
-          "icon": "github"
-        }
-      ]
+      "anchors": []
     }
   },
   "navbar": {

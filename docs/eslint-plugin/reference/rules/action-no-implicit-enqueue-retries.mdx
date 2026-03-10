@@ -1,0 +1,42 @@
+---
+title: "action-no-implicit-enqueue-retries"
+sidebarTitle: "action-no-implicit-enqueue-retries"
+description: "Require explicit retries option on api.enqueue calls to avoid unintended retry behavior."
+keywords: ["eslint", "gadget", "action-no-implicit-enqueue-retries"]
+---
+
+{/* This page is generated. Run pnpm run docs:generate to update. */}
+
+| Recommended                                  | Strict                                     | Auto-fixable                                | Scope                                                 |
+| -------------------------------------------- | ------------------------------------------ | ------------------------------------------- | ----------------------------------------------------- |
+| <Badge color="orange" size="sm">warn</Badge> | <Badge color="red" size="sm">error</Badge> | <Badge color="gray" size="sm">false</Badge> | All files (any file containing `api.enqueue()` calls) |
+
+<Tip>
+  Related Gadget documentation: [Gadget
+  docs](https://docs.gadget.dev/guides/actions/background-actions#retrying-on-failure)
+</Tip>
+
+**What the linter reports:**
+
+> Set api.enqueue retries explicitly. Gadget defaults to 6.
+
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
+
+```ts title="api/models/widget/actions/create.ts"
+// missing retries option - Gadget silently defaults to 6 retries
+api.enqueue(api.publish, {});
+```
+
+  </Tab>
+  <Tab title="Correct">
+
+```ts title="api/models/widget/actions/create.ts"
+// always set retries explicitly to avoid unexpected retry behavior
+api.enqueue(api.publish, {}, { retries: 0 });
+```
+
+  </Tab>
+</Tabs>
