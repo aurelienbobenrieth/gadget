@@ -130,5 +130,12 @@
   },
   "interaction": {
     "drilldown": true
+  },
+  "integrations": {
+    "posthog": {
+      "apiKey": "phc_V7SaDKSDOaQSs8mb1mKXP9coG3dorXv8CZ4hwHGFpwY",
+      "apiHost": "https://eu.i.posthog.com",
+      "sessionRecording": true
+    }
   }
 }
