@@ -32,7 +32,7 @@ Full documentation is available at **[gadget.aurelienbbn.com](https://gadget.aur
 
 ## Contributing
 
-This project improves with community input. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+Pull requests are not accepted at this time. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to participate.
 
 - [Open an issue](https://github.com/aurelienbobenrieth/gadget/issues) to report bugs or request rules.
 - [Start a discussion](https://github.com/aurelienbobenrieth/gadget/discussions) for broader ideas or questions.

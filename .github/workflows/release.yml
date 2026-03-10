@@ -8,13 +8,12 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release:
-    name: Release
+  version:
+    name: Version packages
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
-      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,22 +26,15 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run validation suite
-        run: pnpm run ci
-
-      - name: Create release PR or publish
-        id: changesets
+      - name: Create or update version PR
         uses: changesets/action@v1
         with:
           version: pnpm changeset version
-          publish: pnpm --filter @aurelienbbn/eslint-plugin-gadget publish --access public --provenance --no-git-checks
           title: "chore: version packages"
           commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

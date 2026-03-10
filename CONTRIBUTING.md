@@ -1,33 +1,16 @@
 # Contributing
 
-Thanks for helping improve `eslint-plugin-gadget`.
+This is a personal project. Pull requests are not accepted at this time.
 
-## Development setup
+## How to contribute
 
-- Use Node `22` and pnpm `10`.
-- Install dependencies with `pnpm install`.
-- Run the full validation suite with `pnpm run ci` before opening a pull request.
+- [Open an issue](https://github.com/aurelienbobenrieth/gadget/issues) to report bugs or request new rules.
+- [Start a discussion](https://github.com/aurelienbobenrieth/gadget/discussions) for broader ideas, questions, or feedback.
 
-## Project structure
+## Local development
 
-- `packages/eslint-plugin-gadget`: published package source, tests, and package metadata.
-- `.github/workflows`: CI and release automation.
+If you want to run the project locally (to test a rule against your own codebase, for example):
 
-## Pull requests
-
-- Keep changes focused and easy to review.
-- Add or update tests when behavior changes.
-- Update docs when user-facing behavior, install steps, or rule behavior changes.
-- Avoid unrelated refactors in the same pull request.
-
-## Quality bar
-
-Before submitting, make sure these pass locally:
-
-```bash
-pnpm run ci
-```
-
-## Release notes
-
-User-facing changes should be easy to summarize from the pull request description. Include the motivation, any migration notes, and examples when useful.
+- Node 22+, pnpm 10+
+- `pnpm install`
+- `pnpm run ci` runs the full validation suite (build, types, lint, format, test, package checks)
