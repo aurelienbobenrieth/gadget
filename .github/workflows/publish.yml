@@ -49,9 +49,7 @@ jobs:
         run: pnpm run ci
 
       - name: Publish package
-        run: pnpm --filter @aurelienbbn/eslint-plugin-gadget publish --access public --provenance --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm --filter @aurelienbbn/eslint-plugin-gadget publish --access public --no-git-checks
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
