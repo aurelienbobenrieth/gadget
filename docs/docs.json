@@ -3,11 +3,11 @@
   "theme": "mint",
   "name": "@aurelienbbn/gadget",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#4242fc",
+    "light": "#4242fc",
+    "dark": "#4242fc"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/images/gadget-logo.svg",
   "navigation": {
     "products": [
       {
@@ -96,7 +96,39 @@
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/aurelienbobenrieth/gadget"
+      "github": "https://github.com/aurelienbobenrieth/gadget",
+      "x": "https://x.com/aurelienbbn",
+      "linkedin": "https://www.linkedin.com/in/aurelienbobenrieth",
+      "website": "https://aurelienbbn.com"
     }
+  },
+  "background": {
+    "color": {
+      "dark": "#141414"
+    }
+  },
+  "appearance": {
+    "default": "system"
+  },
+  "fonts": {
+    "family": "Inter",
+    "heading": {
+      "family": "Inter"
+    },
+    "body": {
+      "family": "Inter"
+    }
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "seo": {
+    "indexing": "all"
+  },
+  "metadata": {
+    "timestamp": true
+  },
+  "interaction": {
+    "drilldown": true
   }
 }
