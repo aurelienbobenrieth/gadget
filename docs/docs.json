@@ -92,7 +92,16 @@
     }
   },
   "contextual": {
-    "options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
@@ -130,5 +139,12 @@
   },
   "interaction": {
     "drilldown": true
+  },
+  "integrations": {
+    "posthog": {
+      "apiKey": "phc_V7SaDKSDOaQSs8mb1mKXP9coG3dorXv8CZ4hwHGFpwY",
+      "apiHost": "https://eu.i.posthog.com",
+      "sessionRecording": true
+    }
   }
 }
