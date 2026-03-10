@@ -1,7 +1,7 @@
 {
-  "name": "gadget",
+  "name": "@aurelienbbn/gadget",
   "private": true,
-  "description": "Open-source home of eslint-plugin-gadget.",
+  "description": "Monorepo of opinionated non-official Gadget packages.",
   "type": "module",
   "scripts": {
     "build": "pnpm --filter @aurelienbbn/eslint-plugin-gadget run build",
