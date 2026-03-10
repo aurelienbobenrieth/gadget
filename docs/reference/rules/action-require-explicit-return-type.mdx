@@ -1,0 +1,39 @@
+---
+title: "action-require-explicit-return-type"
+description: "Require returnType to be explicitly set in the options export of Gadget actions."
+keywords: ["eslint", "gadget", "action-require-explicit-return-type"]
+---
+
+This page is generated from the rule metadata and tests.
+
+- Scope: Gadget action files
+- Type: `suggestion`
+- Fixable: yes
+- Recommended: `warn`
+- Strict: `error`
+
+## Description
+
+Require returnType to be explicitly set in the options export of Gadget actions.
+
+## Reported messages
+
+- `missingReturnType`: Set returnType explicitly in options.
+
+## Invalid example
+
+```ts
+export const options: ActionOptions = { actionType: "create" };
+```
+
+## Auto-fix output
+
+```ts
+export const options: ActionOptions = { actionType: "create", returnType: false, };
+```
+
+## Valid example
+
+```ts
+export const options: ActionOptions = { returnType: true };
+```

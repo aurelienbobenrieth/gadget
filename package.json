@@ -8,6 +8,7 @@
     "ci": "pnpm run build && pnpm run types:check && pnpm run lint:check && pnpm run format:check && pnpm run test && pnpm run test:build",
     "cq:check": "pnpm run types:check && pnpm run lint:check && pnpm run format:check",
     "cq:fix": "pnpm run types:check && pnpm run lint:fix && pnpm run format:fix",
+    "docs:generate": "pnpm --filter @aurelienbbn/eslint-plugin-gadget run build && node docs/scripts/generate-eslint-plugin-docs.mjs",
     "format:check": "prettier --check .",
     "format:fix": "prettier --write .",
     "lint:check": "eslint \"packages/eslint-plugin-gadget/src/**/*.ts\"",

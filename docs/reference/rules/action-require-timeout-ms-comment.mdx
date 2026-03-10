@@ -1,0 +1,41 @@
+---
+title: "action-require-timeout-ms-comment"
+description: "Require a trailing inline comment describing the duration on the timeoutMS property in Gadget action options."
+keywords: ["eslint", "gadget", "action-require-timeout-ms-comment"]
+---
+
+This page is generated from the rule metadata and tests.
+
+- Scope: Gadget action files
+- Type: `suggestion`
+- Fixable: yes
+- Recommended: `warn`
+- Strict: `error`
+
+## Description
+
+Require a trailing inline comment describing the duration on the timeoutMS property in Gadget action options.
+
+## Reported messages
+
+- `missingComment`: Add an inline duration comment to timeoutMS.
+
+## Invalid example
+
+```ts
+export const options: ActionOptions = { timeoutMS: 50000 };
+```
+
+## Auto-fix output
+
+```ts
+export const options: ActionOptions = { timeoutMS: 50000 // 50 seconds
+ };
+```
+
+## Valid example
+
+```ts
+export const options: ActionOptions = { timeoutMS: 50000 // 50 seconds
+};
+```

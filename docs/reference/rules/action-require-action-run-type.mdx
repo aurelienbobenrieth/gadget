@@ -1,0 +1,53 @@
+---
+title: "action-require-action-run-type"
+description: "Require Gadget action run and onSuccess exports to use generated type annotations."
+keywords: ["eslint", "gadget", "action-require-action-run-type"]
+---
+
+This page is generated from the rule metadata and tests.
+
+- Scope: Gadget action files
+- Type: `problem`
+- Fixable: yes
+- Recommended: `warn`
+- Strict: `error`
+
+## Description
+
+Require Gadget action run and onSuccess exports to use generated type annotations.
+
+## Reported messages
+
+- `manualOnSuccessType`: Use ActionOnSuccess for onSuccess.
+- `manualRunType`: Use ActionRun for run.
+- `missingOnSuccessType`: Type onSuccess as ActionOnSuccess.
+- `missingRunType`: Type run as ActionRun.
+
+## Invalid example
+
+```ts
+import { applyParams, save } from "gadget-server";
+export const run = async ({ params, record }) => {
+  await applyParams(record, params);
+  await save(record);
+};
+```
+
+## Auto-fix output
+
+```ts
+import { applyParams, save } from "gadget-server";
+export const run: ActionRun = async ({ params, record }) => {
+  await applyParams(record, params);
+  await save(record);
+};
+```
+
+## Valid example
+
+```ts
+import { ActionRun } from "gadget-server";
+export const run: ActionRun = async ({ params, record }) => {
+  await save(record);
+};
+```

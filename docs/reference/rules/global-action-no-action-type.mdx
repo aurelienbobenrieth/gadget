@@ -1,0 +1,39 @@
+---
+title: "global-action-no-action-type"
+description: "Disallow actionType in global action options."
+keywords: ["eslint", "gadget", "global-action-no-action-type"]
+---
+
+This page is generated from the rule metadata and tests.
+
+- Scope: Global action files
+- Type: `problem`
+- Fixable: yes
+- Recommended: `warn`
+- Strict: `error`
+
+## Description
+
+Disallow actionType in global action options.
+
+## Reported messages
+
+- `actionTypeNotAllowed`: Remove actionType from global actions.
+
+## Invalid example
+
+```ts
+export const options: ActionOptions = { actionType: "custom" };
+```
+
+## Auto-fix output
+
+```ts
+export const options: ActionOptions = {  };
+```
+
+## Valid example
+
+```ts
+export const options: ActionOptions = { returnType: true };
+```

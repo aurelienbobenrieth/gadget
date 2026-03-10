@@ -1,0 +1,31 @@
+---
+title: "How rules apply"
+description: "Understand which Gadget files the plugin checks and where a few global rules still run."
+keywords: ["eslint", "gadget", "rules", "scope"]
+---
+
+Most rules target Gadget action files only. The plugin detects them with these path patterns:
+
+- `**/api/actions/**/*.{js,ts}`
+- `**/api/models/**/actions/**/*.{js,ts}`
+
+## Scope by rule family
+
+| Rule family       | Scope                                                      |
+| ----------------- | ---------------------------------------------------------- |
+| `action-*`        | Any Gadget action file unless the rule page says otherwise |
+| `model-action-*`  | Model action files under `api/models/**/actions`           |
+| `global-action-*` | Global action files under `api/actions`                    |
+| Enqueue rules     | Any file that calls `api.enqueue(...)`                     |
+
+## Why enqueue rules are wider
+
+`action-no-enqueue-max-concurrency-exceeded` and `action-no-implicit-enqueue-retries` inspect `api.enqueue(...)` directly. They keep working outside action files because the risk is attached to the enqueue call itself.
+
+## What the generated pages show
+
+Each generated rule page includes a scope label, the recommended and strict severities, reported messages, and test-backed examples.
+
+<Card title="Open the rule reference" icon="book-open" href="/reference/rules/index">
+  Browse the generated rule catalog.
+</Card>

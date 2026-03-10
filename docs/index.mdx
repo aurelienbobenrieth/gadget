@@ -1,97 +1,37 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: "Gadget ESLint plugin"
+description: "Lint Gadget action files with generated rule reference pages sourced from the plugin code."
+keywords: ["eslint", "gadget", "mintlify", "rules"]
 ---
 
-## Setting up
+`@aurelienbbn/eslint-plugin-gadget` adds focused ESLint rules for Gadget action files. The docs site keeps the setup guides short and generates the rule reference from the package metadata, configs, and rule tests.
 
-Get your documentation site up and running in minutes.
-
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
-
-## Make it yours
-
-Design a docs site that looks great and empowers your users.
-
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
+<CardGroup cols={2}>
+  <Card title="Install the plugin" icon="download" href="/getting-started/installation">
+    Add the package to your project and confirm the runtime requirements.
   </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
+  <Card title="Configure ESLint" icon="sliders" href="/getting-started/configuration">
+    Start with the recommended preset or move straight to strict mode.
   </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
+  <Card title="Browse configurations" icon="list-checks" href="/reference/configurations">
+    See every rule included in `recommended` and `strict`.
   </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
+  <Card title="Browse generated rules" icon="book-open" href="/reference/rules/index">
+    Read rule descriptions, severities, messages, and examples pulled from the codebase.
   </Card>
-</Columns>
+</CardGroup>
 
-## Create beautiful pages
+## What stays generated
 
-Everything you need to create world-class documentation.
+- `docs/reference/configurations.mdx` is generated from `plugin.configs.recommended` and `plugin.configs.strict`.
+- `docs/reference/rules/index.mdx` and each rule page under `docs/reference/rules` are generated from rule metadata plus the first valid and invalid test cases.
+- Re-run `pnpm run docs:generate` after changing rule descriptions, fixability, configs, or tests.
 
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+## What stays hand-written
 
-## Need inspiration?
+- Installation, configuration, and scope guidance stay hand-written because they explain how to use the package in a real project.
+- Generated reference pages stay narrow and factual so they can track the source without turning the docs into a README copy.
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+## Read the code first
+
+The source package lives in `packages/eslint-plugin-gadget`. Rule descriptions come from each rule's `meta.docs.description`, while examples come from the existing rule tests. That keeps the docs aligned with the behavior you actually ship.

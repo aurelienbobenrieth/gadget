@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "@aurelienbbn/gadget",
+  "name": "Gadget ESLint plugin",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -14,54 +14,41 @@
         "groups": [
           {
             "group": "Getting started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
+            "pages": ["index", "getting-started/installation", "getting-started/configuration", "development"]
           },
           {
-            "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
+            "group": "How it works",
+            "pages": ["guides/how-rules-apply"]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Reference",
         "groups": [
           {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
+            "group": "Configurations",
+            "pages": ["reference/configurations"]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Rules",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "reference/rules/index",
+              "reference/rules/action-no-await-handle-result-in-action",
+              "reference/rules/action-no-empty-on-success",
+              "reference/rules/action-no-enqueue-max-concurrency-exceeded",
+              "reference/rules/action-no-implicit-enqueue-retries",
+              "reference/rules/action-no-invalid-options",
+              "reference/rules/action-no-invalid-params",
+              "reference/rules/action-no-invalid-timeout-ms",
+              "reference/rules/action-no-return-value-in-on-success",
+              "reference/rules/action-require-action-run-type",
+              "reference/rules/action-require-explicit-return-type",
+              "reference/rules/action-require-run-with-on-success",
+              "reference/rules/action-require-timeout-ms-comment",
+              "reference/rules/global-action-no-action-type",
+              "reference/rules/model-action-invalid-action-type",
+              "reference/rules/model-action-no-invalid-trigger",
+              "reference/rules/model-action-no-transactional-timeout-mismatch"
             ]
           }
         ]
@@ -70,14 +57,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "npm",
+          "href": "https://www.npmjs.com/package/@aurelienbbn/eslint-plugin-gadget",
+          "icon": "package"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "GitHub",
+          "href": "https://github.com/aurelienbobenrieth/gadget/tree/main/packages/eslint-plugin-gadget",
+          "icon": "github"
         }
       ]
     }
@@ -85,33 +72,22 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "GitHub",
+        "href": "https://github.com/aurelienbobenrieth/gadget"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "npm",
+      "href": "https://www.npmjs.com/package/@aurelienbbn/eslint-plugin-gadget"
     }
   },
   "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+    "options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/aurelienbobenrieth/gadget"
     }
   }
 }

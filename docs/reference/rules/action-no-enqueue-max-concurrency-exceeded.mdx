@@ -1,0 +1,33 @@
+---
+title: "action-no-enqueue-max-concurrency-exceeded"
+description: "Disallow maxConcurrency values exceeding Gadget's hard limit of 100 in api.enqueue queue options."
+keywords: ["eslint", "gadget", "action-no-enqueue-max-concurrency-exceeded"]
+---
+
+This page is generated from the rule metadata and tests.
+
+- Scope: Any file containing api.enqueue(...)
+- Type: `problem`
+- Fixable: no
+- Recommended: `warn`
+- Strict: `error`
+
+## Description
+
+Disallow maxConcurrency values exceeding Gadget's hard limit of 100 in api.enqueue queue options.
+
+## Reported messages
+
+- `exceeded`: maxConcurrency {{ value }} exceeds Gadget's limit of 100.
+
+## Invalid example
+
+```ts
+api.enqueue(api.publish, {}, { queue: { name: "q", maxConcurrency: 101 } })
+```
+
+## Valid example
+
+```ts
+api.enqueue(api.publish, {}, { queue: { name: "q", maxConcurrency: 100 } })
+```

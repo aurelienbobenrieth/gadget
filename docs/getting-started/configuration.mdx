@@ -1,0 +1,44 @@
+---
+title: "Configure ESLint"
+description: "Use the recommended or strict Gadget ESLint preset in a flat config."
+keywords: ["eslint", "gadget", "recommended", "strict"]
+---
+
+## Recommended preset
+
+```js
+import gadget from "@aurelienbbn/eslint-plugin-gadget";
+
+export default [gadget.configs.recommended];
+```
+
+Use `recommended` when you want the highest-signal checks at `error` and the style or safety nudges at `warn`.
+
+## Strict preset
+
+```js
+import gadget from "@aurelienbbn/eslint-plugin-gadget";
+
+export default [gadget.configs.strict];
+```
+
+Use `strict` when you want every exported rule to fail CI.
+
+## Override individual rules
+
+```js
+import gadget from "@aurelienbbn/eslint-plugin-gadget";
+
+export default [
+  gadget.configs.recommended,
+  {
+    rules: {
+      "gadget/action-require-timeout-ms-comment": "off",
+    },
+  },
+];
+```
+
+## Next step
+
+Read `/guides/how-rules-apply` to see which files each rule family inspects.

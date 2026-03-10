@@ -1,0 +1,44 @@
+---
+title: "model-action-no-invalid-trigger"
+description: "Disallow scheduler triggers in model action options."
+keywords: ["eslint", "gadget", "model-action-no-invalid-trigger"]
+---
+
+This page is generated from the rule metadata and tests.
+
+- Scope: Model action files
+- Type: `problem`
+- Fixable: yes
+- Recommended: `warn`
+- Strict: `error`
+
+## Description
+
+Disallow scheduler triggers in model action options.
+
+## Reported messages
+
+- `schedulerNotAllowed`: Model actions cannot use scheduler triggers.
+
+## Invalid example
+
+```ts
+export const options: ActionOptions = {
+  triggers: [{ type: "scheduler" }],
+};
+```
+
+## Auto-fix output
+
+```ts
+export const options: ActionOptions = {
+};
+```
+
+## Valid example
+
+```ts
+export const options: ActionOptions = {
+  triggers: [{ type: "api" }],
+};
+```

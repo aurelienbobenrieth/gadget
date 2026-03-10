@@ -1,0 +1,44 @@
+---
+title: "action-no-return-value-in-on-success"
+description: "Disallow returning a value from onSuccess in Gadget actions."
+keywords: ["eslint", "gadget", "action-no-return-value-in-on-success"]
+---
+
+This page is generated from the rule metadata and tests.
+
+- Scope: Gadget action files
+- Type: `suggestion`
+- Fixable: yes
+- Recommended: `warn`
+- Strict: `error`
+
+## Description
+
+Disallow returning a value from onSuccess in Gadget actions.
+
+## Reported messages
+
+- `noReturnValue`: onSuccess return values are ignored. Use return; or remove it.
+
+## Invalid example
+
+```ts
+export const onSuccess: ActionOnSuccess = async ({ record }) => {
+  return { success: true };
+};
+```
+
+## Auto-fix output
+
+```ts
+export const onSuccess: ActionOnSuccess = async ({ record }) => {
+};
+```
+
+## Valid example
+
+```ts
+export const onSuccess: ActionOnSuccess = async ({ record }) => {
+  await notify(record);
+};
+```

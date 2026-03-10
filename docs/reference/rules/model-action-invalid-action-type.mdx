@@ -1,0 +1,33 @@
+---
+title: "model-action-invalid-action-type"
+description: "Disallow invalid actionType values in model action options."
+keywords: ["eslint", "gadget", "model-action-invalid-action-type"]
+---
+
+This page is generated from the rule metadata and tests.
+
+- Scope: Model action files
+- Type: `problem`
+- Fixable: no
+- Recommended: `warn`
+- Strict: `error`
+
+## Description
+
+Disallow invalid actionType values in model action options.
+
+## Reported messages
+
+- `invalidActionType`: actionType "{{ value }}" must be create, update, delete, or custom.
+
+## Invalid example
+
+```ts
+export const options: ActionOptions = { actionType: "scheduler" };
+```
+
+## Valid example
+
+```ts
+export const options: ActionOptions = { actionType: "create" };
+```

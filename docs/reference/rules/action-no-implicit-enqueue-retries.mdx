@@ -1,0 +1,33 @@
+---
+title: "action-no-implicit-enqueue-retries"
+description: "Require explicit retries option on api.enqueue calls to avoid unintended retry behavior."
+keywords: ["eslint", "gadget", "action-no-implicit-enqueue-retries"]
+---
+
+This page is generated from the rule metadata and tests.
+
+- Scope: Any file containing api.enqueue(...)
+- Type: `suggestion`
+- Fixable: no
+- Recommended: `warn`
+- Strict: `error`
+
+## Description
+
+Require explicit retries option on api.enqueue calls to avoid unintended retry behavior.
+
+## Reported messages
+
+- `missingRetries`: Set api.enqueue retries explicitly. Gadget defaults to 6.
+
+## Invalid example
+
+```ts
+api.enqueue(api.publish, {})
+```
+
+## Valid example
+
+```ts
+api.enqueue(api.publish, {}, { retries: 0 })
+```

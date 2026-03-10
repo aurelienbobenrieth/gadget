@@ -1,0 +1,32 @@
+---
+title: "Install"
+description: "Add the Gadget ESLint plugin to an ESLint flat config project."
+keywords: ["eslint", "gadget", "install", "flat config"]
+---
+
+## Requirements
+
+- Node `>=18.18`
+- ESLint `>=9`
+- An ESLint flat config such as `eslint.config.js` or `eslint.config.mjs`
+
+## Add the package
+
+```bash
+pnpm add -D @aurelienbbn/eslint-plugin-gadget eslint
+```
+
+## Confirm the package entry
+
+The published plugin exports a default plugin object with:
+
+- `configs.recommended`
+- `configs.strict`
+- `rules`
+- `meta.name` and `meta.version`
+
+Use the generated reference pages if you want to inspect the exact rule set before wiring it into your project.
+
+<Card title="Browse configurations" icon="list-checks" href="/reference/configurations">
+  Inspect the exported presets and their severities.
+</Card>

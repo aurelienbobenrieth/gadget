@@ -1,0 +1,38 @@
+---
+title: "Rules"
+description: "Generated rule reference for the Gadget ESLint plugin."
+keywords: ["eslint", "gadget", "rules", "reference"]
+---
+
+This page is generated from rule metadata, exported configs, and the first valid and invalid test cases for each rule.
+
+## Options and params
+
+| Rule | Recommended | Strict | Type | Fixable |
+| --- | --- | --- | --- | --- |
+| [`action-no-invalid-options`](/reference/rules/action-no-invalid-options) | `error` | `error` | `problem` | yes |
+| [`action-no-invalid-params`](/reference/rules/action-no-invalid-params) | `error` | `error` | `problem` | no |
+| [`action-no-invalid-timeout-ms`](/reference/rules/action-no-invalid-timeout-ms) | `error` | `error` | `problem` | yes |
+| [`action-require-explicit-return-type`](/reference/rules/action-require-explicit-return-type) | `warn` | `error` | `suggestion` | yes |
+| [`action-require-timeout-ms-comment`](/reference/rules/action-require-timeout-ms-comment) | `warn` | `error` | `suggestion` | yes |
+| [`global-action-no-action-type`](/reference/rules/global-action-no-action-type) | `warn` | `error` | `problem` | yes |
+| [`model-action-invalid-action-type`](/reference/rules/model-action-invalid-action-type) | `warn` | `error` | `problem` | no |
+| [`model-action-no-invalid-trigger`](/reference/rules/model-action-no-invalid-trigger) | `warn` | `error` | `problem` | yes |
+| [`model-action-no-transactional-timeout-mismatch`](/reference/rules/model-action-no-transactional-timeout-mismatch) | `warn` | `error` | `problem` | no |
+
+## Runtime safety
+
+| Rule | Recommended | Strict | Type | Fixable |
+| --- | --- | --- | --- | --- |
+| [`action-no-await-handle-result-in-action`](/reference/rules/action-no-await-handle-result-in-action) | `warn` | `error` | `suggestion` | no |
+| [`action-no-empty-on-success`](/reference/rules/action-no-empty-on-success) | `warn` | `error` | `suggestion` | yes |
+| [`action-no-return-value-in-on-success`](/reference/rules/action-no-return-value-in-on-success) | `warn` | `error` | `suggestion` | yes |
+| [`action-require-action-run-type`](/reference/rules/action-require-action-run-type) | `warn` | `error` | `problem` | yes |
+| [`action-require-run-with-on-success`](/reference/rules/action-require-run-with-on-success) | `warn` | `error` | `problem` | no |
+
+## Enqueue safety
+
+| Rule | Recommended | Strict | Type | Fixable |
+| --- | --- | --- | --- | --- |
+| [`action-no-enqueue-max-concurrency-exceeded`](/reference/rules/action-no-enqueue-max-concurrency-exceeded) | `warn` | `error` | `problem` | no |
+| [`action-no-implicit-enqueue-retries`](/reference/rules/action-no-implicit-enqueue-retries) | `warn` | `error` | `suggestion` | no |

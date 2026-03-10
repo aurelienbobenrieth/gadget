@@ -1,0 +1,38 @@
+---
+title: "action-require-run-with-on-success"
+description: "Require a run export when onSuccess is exported in Gadget actions."
+keywords: ["eslint", "gadget", "action-require-run-with-on-success"]
+---
+
+This page is generated from the rule metadata and tests.
+
+- Scope: Gadget action files
+- Type: `problem`
+- Fixable: no
+- Recommended: `warn`
+- Strict: `error`
+
+## Description
+
+Require a run export when onSuccess is exported in Gadget actions.
+
+## Reported messages
+
+- `onSuccessWithoutRun`: onSuccess requires a run export.
+
+## Invalid example
+
+```ts
+export const onSuccess: ActionOnSuccess = async ({ record }) => {
+  await doSomething(record);
+};
+```
+
+## Valid example
+
+```ts
+export const run: ActionRun = async ({ params }) => {};
+export const onSuccess: ActionOnSuccess = async ({ record }) => {
+  await doSomething(record);
+};
+```

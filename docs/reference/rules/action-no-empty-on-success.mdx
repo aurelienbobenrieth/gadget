@@ -1,0 +1,35 @@
+---
+title: "action-no-empty-on-success"
+description: "Disallow empty onSuccess exports in Gadget actions."
+keywords: ["eslint", "gadget", "action-no-empty-on-success"]
+---
+
+This page is generated from the rule metadata and tests.
+
+- Scope: Gadget action files
+- Type: `suggestion`
+- Fixable: yes
+- Recommended: `warn`
+- Strict: `error`
+
+## Description
+
+Disallow empty onSuccess exports in Gadget actions.
+
+## Reported messages
+
+- `emptyOnSuccess`: Remove empty onSuccess.
+
+## Invalid example
+
+```ts
+export const onSuccess: ActionOnSuccess = async () => {};
+```
+
+## Valid example
+
+```ts
+export const onSuccess: ActionOnSuccess = async ({ record }) => {
+  await doSomething(record);
+};
+```
