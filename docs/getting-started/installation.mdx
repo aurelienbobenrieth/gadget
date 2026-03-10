@@ -1,32 +1,45 @@
 ---
-title: "Install"
-description: "Add the Gadget ESLint plugin to an ESLint flat config project."
-keywords: ["eslint", "gadget", "install", "flat config"]
+title: "Installation"
+description: "Add the Gadget ESLint plugin to your project."
+keywords: ["eslint", "gadget", "install", "flat config", "setup"]
 ---
 
 ## Requirements
 
-- Node `>=18.18`
-- ESLint `>=9`
-- An ESLint flat config such as `eslint.config.js` or `eslint.config.mjs`
+| Dependency    | Version                                                 |
+| ------------- | ------------------------------------------------------- |
+| Node.js       | `>= 18.18`                                              |
+| ESLint        | `>= 9`                                                  |
+| Config format | Flat config (`eslint.config.js` or `eslint.config.mjs`) |
 
-## Add the package
+<Warning>
+  Legacy `.eslintrc` files are not supported. The plugin uses the ESLint flat config format exclusively.
+</Warning>
 
-```bash
-pnpm add -D @aurelienbbn/eslint-plugin-gadget eslint
+## Install
+
+<Tabs>
+  <Tab title="pnpm">```bash pnpm add -D @aurelienbbn/eslint-plugin-gadget eslint ```</Tab>
+  <Tab title="npm">```bash npm install -D @aurelienbbn/eslint-plugin-gadget eslint ```</Tab>
+  <Tab title="yarn">```bash yarn add -D @aurelienbbn/eslint-plugin-gadget eslint ```</Tab>
+</Tabs>
+
+## Verify the install
+
+The plugin default export contains everything you need:
+
+```js
+import gadget from "@aurelienbbn/eslint-plugin-gadget";
+
+// gadget.configs.recommended  - warns on most rules, errors on critical ones
+// gadget.configs.strict       - errors on every rule
+// gadget.rules                - all 16 rules
+// gadget.meta.name            - "@aurelienbbn/eslint-plugin-gadget"
+// gadget.meta.version         - current version
 ```
 
-## Confirm the package entry
+## Next step
 
-The published plugin exports a default plugin object with:
-
-- `configs.recommended`
-- `configs.strict`
-- `rules`
-- `meta.name` and `meta.version`
-
-Use the generated reference pages if you want to inspect the exact rule set before wiring it into your project.
-
-<Card title="Browse configurations" icon="list-checks" href="/reference/configurations">
-  Inspect the exported presets and their severities.
+<Card title="Configure ESLint" icon="sliders" href="/getting-started/configuration">
+  Pick a preset and start linting.
 </Card>

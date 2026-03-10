@@ -1,27 +1,31 @@
 ---
 title: "action-no-await-handle-result-in-action"
+sidebarTitle: "action-no-await-handle-result-in-action"
 description: "Disallow awaiting handle.result() inside run or onSuccess exports in Gadget actions."
 keywords: ["eslint", "gadget", "action-no-await-handle-result-in-action"]
 ---
 
-This page is generated from the rule metadata and tests.
-
-- Scope: Gadget action files
-- Type: `suggestion`
-- Fixable: no
-- Recommended: `warn`
-- Strict: `error`
-
-## Description
+{/* This page is generated. Run pnpm run docs:generate to update. */}
 
 Disallow awaiting handle.result() inside run or onSuccess exports in Gadget actions.
 
+| Property | Value |
+| --- | --- |
+| Type | `suggestion` |
+| Fixable | No |
+| Recommended | `warn` |
+| Strict | `error` |
+| Scope | Gadget action files (global and model) |
+| Category | Runtime safety |
+
 ## Reported messages
 
-- `inOnSuccess`: Do not await handle.result() in onSuccess, it bills the full wait time.
-- `inRun`: Do not await handle.result() in run, it causes GGT_TRANSACTION_TIMEOUT.
+- **`inOnSuccess`**: Do not await handle.result() in onSuccess, it bills the full wait time.
+- **`inRun`**: Do not await handle.result() in run, it causes GGT_TRANSACTION_TIMEOUT.
 
-## Invalid example
+## Examples
+
+### Incorrect
 
 ```ts
 export const run = async () => {
@@ -30,7 +34,7 @@ export const run = async () => {
 };
 ```
 
-## Valid example
+### Correct
 
 ```ts
 export const onSuccess = async () => {

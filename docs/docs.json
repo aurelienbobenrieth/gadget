@@ -7,6 +7,7 @@
     "light": "#07C983",
     "dark": "#15803D"
   },
+  "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
@@ -14,10 +15,10 @@
         "groups": [
           {
             "group": "Getting started",
-            "pages": ["index", "getting-started/installation", "getting-started/configuration", "development"]
+            "pages": ["index", "about", "getting-started/installation", "getting-started/configuration"]
           },
           {
-            "group": "How it works",
+            "group": "Concepts",
             "pages": ["guides/how-rules-apply"]
           }
         ]
@@ -30,25 +31,34 @@
             "pages": ["reference/configurations"]
           },
           {
-            "group": "Rules",
+            "group": "Options and params",
             "pages": [
-              "reference/rules/index",
-              "reference/rules/action-no-await-handle-result-in-action",
-              "reference/rules/action-no-empty-on-success",
-              "reference/rules/action-no-enqueue-max-concurrency-exceeded",
-              "reference/rules/action-no-implicit-enqueue-retries",
               "reference/rules/action-no-invalid-options",
               "reference/rules/action-no-invalid-params",
               "reference/rules/action-no-invalid-timeout-ms",
-              "reference/rules/action-no-return-value-in-on-success",
-              "reference/rules/action-require-action-run-type",
               "reference/rules/action-require-explicit-return-type",
-              "reference/rules/action-require-run-with-on-success",
               "reference/rules/action-require-timeout-ms-comment",
               "reference/rules/global-action-no-action-type",
               "reference/rules/model-action-invalid-action-type",
               "reference/rules/model-action-no-invalid-trigger",
               "reference/rules/model-action-no-transactional-timeout-mismatch"
+            ]
+          },
+          {
+            "group": "Runtime safety",
+            "pages": [
+              "reference/rules/action-no-await-handle-result-in-action",
+              "reference/rules/action-no-empty-on-success",
+              "reference/rules/action-no-return-value-in-on-success",
+              "reference/rules/action-require-action-run-type",
+              "reference/rules/action-require-run-with-on-success"
+            ]
+          },
+          {
+            "group": "Enqueue safety",
+            "pages": [
+              "reference/rules/action-no-enqueue-max-concurrency-exceeded",
+              "reference/rules/action-no-implicit-enqueue-retries"
             ]
           }
         ]

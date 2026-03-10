@@ -1,0 +1,33 @@
+---
+title: "About this project"
+description: "Why this ESLint plugin exists, who maintains it, and how you can contribute."
+keywords: ["gadget", "eslint", "community", "contributing"]
+---
+
+## Why this plugin exists
+
+Gadget's [official documentation](https://docs.gadget.dev) covers action files, options exports, and the enqueue API thoroughly. But the rules it describes are not enforced at the code level. When you misformat an options export, exceed a timeout limit, or await `handle.result()` inside `run`, your code still passes linting - and the error only surfaces at deploy time or, worse, in production.
+
+This is especially costly when AI coding agents generate Gadget action code. Agents follow documentation, but they drift. Without lint-time feedback, both humans and agents repeat the same avoidable mistakes.
+
+This plugin encodes those rules as ESLint checks so mistakes surface in the editor, in CI, and in agent tool loops - before the code ships.
+
+## Community package
+
+This is an **opinionated, community-maintained** package. It is not published or endorsed by Gadget.
+
+It was built from hands-on experience shipping Gadget applications and watching the same classes of errors repeat across projects. The goal is to save other developers (and their agents) the time spent debugging issues that a linter can catch statically.
+
+## What is coming
+
+The `@aurelienbbn/gadget` monorepo is growing. More tools for the Gadget ecosystem are on the way - including editor integrations, language support, and UI components. Follow the [GitHub repository](https://github.com/aurelienbobenrieth/gadget) for updates.
+
+## Feedback and contributions
+
+This plugin improves with community input. If a rule misfires, a fixable case is missing, or a new pattern should be covered:
+
+- Open an [issue](https://github.com/aurelienbobenrieth/gadget/issues) to report bugs or request rules.
+- Submit a [pull request](https://github.com/aurelienbobenrieth/gadget/pulls) - the codebase is straightforward and well-tested.
+- Start a [discussion](https://github.com/aurelienbobenrieth/gadget/discussions) for broader ideas.
+
+Every rule in this plugin has full test coverage and auto-fix support where feasible. Contributions that follow that pattern are welcome.

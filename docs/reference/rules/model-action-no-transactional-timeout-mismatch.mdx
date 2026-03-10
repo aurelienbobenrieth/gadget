@@ -1,32 +1,36 @@
 ---
 title: "model-action-no-transactional-timeout-mismatch"
+sidebarTitle: "model-action-no-transactional-timeout-mismatch"
 description: "Disallow timeoutMS above 5000ms on model actions without explicitly setting transactional: false."
 keywords: ["eslint", "gadget", "model-action-no-transactional-timeout-mismatch"]
 ---
 
-This page is generated from the rule metadata and tests.
-
-- Scope: Model action files
-- Type: `problem`
-- Fixable: no
-- Recommended: `warn`
-- Strict: `error`
-
-## Description
+{/* This page is generated. Run pnpm run docs:generate to update. */}
 
 Disallow timeoutMS above 5000ms on model actions without explicitly setting transactional: false.
 
+| Property | Value |
+| --- | --- |
+| Type | `problem` |
+| Fixable | No |
+| Recommended | `warn` |
+| Strict | `error` |
+| Scope | Model action files |
+| Category | Options and params |
+
 ## Reported messages
 
-- `mismatch`: timeoutMS {{ value }}ms has no effect on transactional model actions above 5000ms.
+- **`mismatch`**: timeoutMS {{ value }}ms has no effect on transactional model actions above 5000ms.
 
-## Invalid example
+## Examples
+
+### Incorrect
 
 ```ts
 export const options: ActionOptions = { timeoutMS: 6000 };
 ```
 
-## Valid example
+### Correct
 
 ```ts
 export const options: ActionOptions = { timeoutMS: 3000 };

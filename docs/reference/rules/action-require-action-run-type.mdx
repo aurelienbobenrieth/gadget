@@ -1,29 +1,34 @@
 ---
 title: "action-require-action-run-type"
+sidebarTitle: "action-require-action-run-type"
 description: "Require Gadget action run and onSuccess exports to use generated type annotations."
 keywords: ["eslint", "gadget", "action-require-action-run-type"]
 ---
 
-This page is generated from the rule metadata and tests.
-
-- Scope: Gadget action files
-- Type: `problem`
-- Fixable: yes
-- Recommended: `warn`
-- Strict: `error`
-
-## Description
+{/* This page is generated. Run pnpm run docs:generate to update. */}
 
 Require Gadget action run and onSuccess exports to use generated type annotations.
 
+| Property | Value |
+| --- | --- |
+| Type | `problem` |
+| Fixable | Yes (auto-fix available) |
+| Recommended | `warn` |
+| Strict | `error` |
+| Scope | Gadget action files (global and model) |
+| Category | Runtime safety |
+
 ## Reported messages
 
-- `manualOnSuccessType`: Use ActionOnSuccess for onSuccess.
-- `manualRunType`: Use ActionRun for run.
-- `missingOnSuccessType`: Type onSuccess as ActionOnSuccess.
-- `missingRunType`: Type run as ActionRun.
+- **`manualOnSuccessType`**: Use ActionOnSuccess for onSuccess.
+- **`manualRunType`**: Use ActionRun for run.
+- **`missingOnSuccessType`**: Type onSuccess as ActionOnSuccess.
+- **`missingRunType`**: Type run as ActionRun.
 
-## Invalid example
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
 
 ```ts
 import { applyParams, save } from "gadget-server";
@@ -33,7 +38,8 @@ export const run = async ({ params, record }) => {
 };
 ```
 
-## Auto-fix output
+  </Tab>
+  <Tab title="Auto-fix output">
 
 ```ts
 import { applyParams, save } from "gadget-server";
@@ -43,7 +49,8 @@ export const run: ActionRun = async ({ params, record }) => {
 };
 ```
 
-## Valid example
+  </Tab>
+  <Tab title="Correct">
 
 ```ts
 import { ActionRun } from "gadget-server";
@@ -51,3 +58,6 @@ export const run: ActionRun = async ({ params, record }) => {
   await save(record);
 };
 ```
+
+  </Tab>
+</Tabs>

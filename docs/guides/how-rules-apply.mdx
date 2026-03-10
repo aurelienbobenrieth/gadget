@@ -1,31 +1,50 @@
 ---
 title: "How rules apply"
-description: "Understand which Gadget files the plugin checks and where a few global rules still run."
-keywords: ["eslint", "gadget", "rules", "scope"]
+description: "Which files the Gadget ESLint plugin inspects and how rule scope is determined by file path."
+keywords: ["eslint", "gadget", "scope", "file paths", "actions"]
 ---
 
-Most rules target Gadget action files only. The plugin detects them with these path patterns:
+The plugin does not lint every file. Most rules activate only on Gadget action file paths, so they stay silent in the rest of your codebase.
 
-- `**/api/actions/**/*.{js,ts}`
-- `**/api/models/**/actions/**/*.{js,ts}`
+## File path detection
 
-## Scope by rule family
+The plugin matches file paths using these glob patterns:
 
-| Rule family       | Scope                                                      |
-| ----------------- | ---------------------------------------------------------- |
-| `action-*`        | Any Gadget action file unless the rule page says otherwise |
-| `model-action-*`  | Model action files under `api/models/**/actions`           |
-| `global-action-*` | Global action files under `api/actions`                    |
-| Enqueue rules     | Any file that calls `api.enqueue(...)`                     |
+| Pattern                                 | Matches             |
+| --------------------------------------- | ------------------- |
+| `**/api/actions/**/*.{js,ts}`           | Global action files |
+| `**/api/models/**/actions/**/*.{js,ts}` | Model action files  |
 
-## Why enqueue rules are wider
+A file matching either pattern is considered a "Gadget action file." Windows backslash paths are normalized before matching.
 
-`action-no-enqueue-max-concurrency-exceeded` and `action-no-implicit-enqueue-retries` inspect `api.enqueue(...)` directly. They keep working outside action files because the risk is attached to the enqueue call itself.
+## Scope by rule prefix
 
-## What the generated pages show
+| Rule prefix       | Applies to                                        |
+| ----------------- | ------------------------------------------------- |
+| `action-*`        | All Gadget action files (global and model)        |
+| `model-action-*`  | Model action files only (`api/models/**/actions`) |
+| `global-action-*` | Global action files only (`api/actions`)          |
+| Enqueue rules     | Any file that contains `api.enqueue(...)` calls   |
 
-Each generated rule page includes a scope label, the recommended and strict severities, reported messages, and test-backed examples.
+<Note>Each rule reference page includes a **Scope** label so you can see exactly where it applies.</Note>
 
-<Card title="Open the rule reference" icon="book-open" href="/reference/rules/index">
-  Browse the generated rule catalog.
-</Card>
+## Why enqueue rules apply everywhere
+
+The two enqueue rules - `action-no-enqueue-max-concurrency-exceeded` and `action-no-implicit-enqueue-retries` - inspect `api.enqueue(...)` call expressions directly. They apply to all files because enqueue calls can appear in utility modules, route handlers, or background jobs outside the standard action directories.
+
+## Examples
+
+```
+my-gadget-app/
+  api/
+    actions/
+      sendEmail.ts          # global action - matched by action-* and global-action-* rules
+    models/
+      user/
+        actions/
+          create.ts         # model action - matched by action-* and model-action-* rules
+          update.ts         # model action
+  src/
+    utils/
+      queue-helper.ts       # not an action file, but enqueue rules still apply here
+```

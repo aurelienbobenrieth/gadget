@@ -14,6 +14,8 @@ const docsRulesRoot = path.join(docsReferenceRoot, GENERATED_RULES_DIRNAME);
 const ruleGroups = [
   {
     heading: "Options and params",
+    description: "Validate that `options` and `params` exports contain values Gadget can serialize and process.",
+    icon: "gear",
     rules: [
       "action-no-invalid-options",
       "action-no-invalid-params",
@@ -28,6 +30,9 @@ const ruleGroups = [
   },
   {
     heading: "Runtime safety",
+    description:
+      "Prevent empty handlers, missing types, and patterns that cause transaction timeouts or billing surprises.",
+    icon: "shield-check",
     rules: [
       "action-no-await-handle-result-in-action",
       "action-no-empty-on-success",
@@ -38,6 +43,8 @@ const ruleGroups = [
   },
   {
     heading: "Enqueue safety",
+    description: "Enforce explicit retries and concurrency limits on `api.enqueue()` calls.",
+    icon: "arrow-right-to-bracket",
     rules: ["action-no-enqueue-max-concurrency-exceeded", "action-no-implicit-enqueue-retries"],
   },
 ];
@@ -96,8 +103,34 @@ function readSeverity(rules, ruleName) {
 function readScope(ruleName) {
   if (ruleName.startsWith("model-action-")) return "Model action files";
   if (ruleName.startsWith("global-action-")) return "Global action files";
-  if (ruleName.includes("enqueue")) return "Any file containing api.enqueue(...)";
-  return "Gadget action files";
+  if (ruleName.includes("enqueue")) return "All files (any file containing `api.enqueue()` calls)";
+  return "Gadget action files (global and model)";
+}
+
+function scopeIcon(scope) {
+  if (scope.startsWith("Model")) return "cube";
+  if (scope.startsWith("Global")) return "globe";
+  if (scope.startsWith("All")) return "layer-group";
+  return "file-code";
+}
+
+function severityLabel(severity) {
+  if (severity === "error") return "error";
+  if (severity === "warn") return "warn";
+  return "off";
+}
+
+function typeLabel(type) {
+  if (type === "problem") return "problem";
+  if (type === "suggestion") return "suggestion";
+  return type;
+}
+
+function groupForRule(ruleName) {
+  for (const group of ruleGroups) {
+    if (group.rules.includes(ruleName)) return group.heading;
+  }
+  return "Other";
 }
 
 async function readRuleExamples(ruleName) {
@@ -150,101 +183,186 @@ function readStringProperty(objectLiteral, propertyName) {
   return "";
 }
 
-function renderConfigurationsPage(ruleDocs) {
+// ---------------------------------------------------------------------------
+// Page renderers
+// ---------------------------------------------------------------------------
+
+function renderConfigurationsPage(allRuleDocs) {
   const lines = [
     "---",
     'title: "Configurations"',
-    'description: "Generated severity matrix for the recommended and strict Gadget ESLint presets."',
-    'keywords: ["eslint", "gadget", "recommended", "strict"]',
+    'description: "Severity matrix for the recommended and strict presets."',
+    'keywords: ["eslint", "gadget", "recommended", "strict", "configurations"]',
     "---",
     "",
-    "This page is generated from the exported plugin configs. Run `pnpm run docs:generate` after changing a preset.",
+    "{/* This page is generated. Run pnpm run docs:generate to update. */}",
     "",
-    "| Rule | Recommended | Strict |",
-    "| --- | --- | --- |",
-    ...ruleDocs.map(
-      (ruleDoc) =>
-        `| [\`${ruleDoc.name}\`](/reference/rules/${ruleDoc.name}) | \`${ruleDoc.recommended}\` | \`${ruleDoc.strict}\` |`,
-    ),
+    "The plugin ships two presets. Both register the plugin under the `gadget` namespace.",
+    "",
+    "| Preset | Description |",
+    "| --- | --- |",
+    "| `recommended` | Three critical rules at `error`, the rest at `warn`. Good default for most projects. |",
+    "| `strict` | Every rule at `error`. Use when you want the full set to block CI. |",
+    "",
+    "## Severity matrix",
+    "",
   ];
 
-  return `${lines.join("\n")}\n`;
+  for (const group of ruleGroups) {
+    lines.push(`### ${group.heading}`, "");
+    lines.push("| Rule | Recommended | Strict |");
+    lines.push("| --- | --- | --- |");
+
+    for (const ruleName of group.rules) {
+      const ruleDoc = allRuleDocs.find((rd) => rd.name === ruleName);
+      if (!ruleDoc) continue;
+
+      lines.push(
+        `| [\`${ruleDoc.name}\`](/reference/rules/${ruleDoc.name}) | \`${ruleDoc.recommended}\` | \`${ruleDoc.strict}\` |`,
+      );
+    }
+
+    lines.push("");
+  }
+
+  return `${lines.join("\n").trimEnd()}\n`;
 }
 
 function renderRuleIndexPage(ruleDocMap) {
   const lines = [
     "---",
     'title: "Rules"',
-    'description: "Generated rule reference for the Gadget ESLint plugin."',
+    'description: "All 16 rules organized by category with severity, type, and fixability."',
     'keywords: ["eslint", "gadget", "rules", "reference"]',
     "---",
     "",
-    "This page is generated from rule metadata, exported configs, and the first valid and invalid test cases for each rule.",
+    "{/* This page is generated. Run pnpm run docs:generate to update. */}",
+    "",
   ];
 
   for (const group of ruleGroups) {
-    lines.push(
-      "",
-      `## ${group.heading}`,
-      "",
-      "| Rule | Recommended | Strict | Type | Fixable |",
-      "| --- | --- | --- | --- | --- |",
-    );
+    lines.push(`## ${group.heading}`);
+    lines.push("");
+    lines.push(group.description);
+    lines.push("");
+    lines.push("<CardGroup cols={1}>");
 
     for (const ruleName of group.rules) {
       const ruleDoc = ruleDocMap.get(ruleName);
       if (!ruleDoc) continue;
 
+      const badges = [];
+      badges.push(severityLabel(ruleDoc.recommended));
+      badges.push(typeLabel(ruleDoc.type));
+      if (ruleDoc.fixable) badges.push("fixable");
+
       lines.push(
-        `| [\`${ruleDoc.name}\`](/reference/rules/${ruleDoc.name}) | \`${ruleDoc.recommended}\` | \`${ruleDoc.strict}\` | \`${ruleDoc.type}\` | ${ruleDoc.fixable ? "yes" : "no"} |`,
+        `  <Card title="${ruleDoc.name}" icon="${scopeIcon(ruleDoc.scope)}" href="/reference/rules/${ruleDoc.name}">`,
       );
+      lines.push(`    ${ruleDoc.description} ${badges.map((b) => `\`${b}\``).join(" ")}`);
+      lines.push("  </Card>");
     }
+
+    lines.push("</CardGroup>");
+    lines.push("");
   }
 
-  return `${lines.join("\n")}\n`;
+  return `${lines.join("\n").trimEnd()}\n`;
 }
 
 function renderRulePage(ruleDoc) {
   const lines = [
     "---",
     `title: "${ruleDoc.name}"`,
+    `sidebarTitle: "${ruleDoc.name}"`,
     `description: "${escapeFrontmatter(ruleDoc.description)}"`,
     `keywords: ["eslint", "gadget", "${ruleDoc.name}"]`,
     "---",
     "",
-    "This page is generated from the rule metadata and tests.",
-    "",
-    `- Scope: ${ruleDoc.scope}`,
-    `- Type: \`${ruleDoc.type}\``,
-    `- Fixable: ${ruleDoc.fixable ? "yes" : "no"}`,
-    `- Recommended: \`${ruleDoc.recommended}\``,
-    `- Strict: \`${ruleDoc.strict}\``,
-    "",
-    "## Description",
+    "{/* This page is generated. Run pnpm run docs:generate to update. */}",
     "",
     ruleDoc.description,
     "",
-    "## Reported messages",
+    `| Property | Value |`,
+    `| --- | --- |`,
+    `| Type | \`${ruleDoc.type}\` |`,
+    `| Fixable | ${ruleDoc.fixable ? "Yes (auto-fix available)" : "No"} |`,
+    `| Recommended | \`${ruleDoc.recommended}\` |`,
+    `| Strict | \`${ruleDoc.strict}\` |`,
+    `| Scope | ${ruleDoc.scope} |`,
+    `| Category | ${groupForRule(ruleDoc.name)} |`,
     "",
   ];
 
-  for (const [messageId, message] of ruleDoc.messages) {
-    lines.push(`- \`${messageId}\`: ${message}`);
+  // Messages section
+  if (ruleDoc.messages.length > 0) {
+    lines.push("## Reported messages", "");
+
+    for (const [messageId, message] of ruleDoc.messages) {
+      lines.push(`- **\`${messageId}\`**: ${message}`);
+    }
+
+    lines.push("");
   }
 
-  if (ruleDoc.invalidExample) {
-    lines.push("", "## Invalid example", "", "```ts", ruleDoc.invalidExample, "```");
+  // Examples section
+  const hasInvalid = Boolean(ruleDoc.invalidExample);
+  const hasOutput = Boolean(ruleDoc.invalidOutput);
+  const hasValid = Boolean(ruleDoc.validExample);
+
+  if (hasInvalid || hasValid) {
+    lines.push("## Examples", "");
   }
 
-  if (ruleDoc.invalidOutput) {
-    lines.push("", "## Auto-fix output", "", "```ts", ruleDoc.invalidOutput, "```");
+  if (hasInvalid && hasOutput) {
+    // Show before/after with CodeGroup when there is an auto-fix
+    lines.push("<Tabs>");
+    lines.push('  <Tab title="Incorrect">');
+    lines.push("");
+    lines.push("```ts");
+    lines.push(ruleDoc.invalidExample);
+    lines.push("```");
+    lines.push("");
+    lines.push("  </Tab>");
+    lines.push('  <Tab title="Auto-fix output">');
+    lines.push("");
+    lines.push("```ts");
+    lines.push(ruleDoc.invalidOutput);
+    lines.push("```");
+    lines.push("");
+    lines.push("  </Tab>");
+
+    if (hasValid) {
+      lines.push('  <Tab title="Correct">');
+      lines.push("");
+      lines.push("```ts");
+      lines.push(ruleDoc.validExample);
+      lines.push("```");
+      lines.push("");
+      lines.push("  </Tab>");
+    }
+
+    lines.push("</Tabs>");
+  } else {
+    // No auto-fix: show invalid and valid separately
+    if (hasInvalid) {
+      lines.push("### Incorrect", "");
+      lines.push("```ts");
+      lines.push(ruleDoc.invalidExample);
+      lines.push("```");
+      lines.push("");
+    }
+
+    if (hasValid) {
+      lines.push("### Correct", "");
+      lines.push("```ts");
+      lines.push(ruleDoc.validExample);
+      lines.push("```");
+      lines.push("");
+    }
   }
 
-  if (ruleDoc.validExample) {
-    lines.push("", "## Valid example", "", "```ts", ruleDoc.validExample, "```");
-  }
-
-  return `${lines.join("\n")}\n`;
+  return `${lines.join("\n").trimEnd()}\n`;
 }
 
 function escapeFrontmatter(value) {

@@ -1,26 +1,31 @@
 ---
 title: "action-no-return-value-in-on-success"
+sidebarTitle: "action-no-return-value-in-on-success"
 description: "Disallow returning a value from onSuccess in Gadget actions."
 keywords: ["eslint", "gadget", "action-no-return-value-in-on-success"]
 ---
 
-This page is generated from the rule metadata and tests.
-
-- Scope: Gadget action files
-- Type: `suggestion`
-- Fixable: yes
-- Recommended: `warn`
-- Strict: `error`
-
-## Description
+{/* This page is generated. Run pnpm run docs:generate to update. */}
 
 Disallow returning a value from onSuccess in Gadget actions.
 
+| Property | Value |
+| --- | --- |
+| Type | `suggestion` |
+| Fixable | Yes (auto-fix available) |
+| Recommended | `warn` |
+| Strict | `error` |
+| Scope | Gadget action files (global and model) |
+| Category | Runtime safety |
+
 ## Reported messages
 
-- `noReturnValue`: onSuccess return values are ignored. Use return; or remove it.
+- **`noReturnValue`**: onSuccess return values are ignored. Use return; or remove it.
 
-## Invalid example
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
 
 ```ts
 export const onSuccess: ActionOnSuccess = async ({ record }) => {
@@ -28,17 +33,22 @@ export const onSuccess: ActionOnSuccess = async ({ record }) => {
 };
 ```
 
-## Auto-fix output
+  </Tab>
+  <Tab title="Auto-fix output">
 
 ```ts
 export const onSuccess: ActionOnSuccess = async ({ record }) => {
 };
 ```
 
-## Valid example
+  </Tab>
+  <Tab title="Correct">
 
 ```ts
 export const onSuccess: ActionOnSuccess = async ({ record }) => {
   await notify(record);
 };
 ```
+
+  </Tab>
+</Tabs>

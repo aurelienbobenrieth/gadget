@@ -1,37 +1,50 @@
 ---
 title: "Gadget ESLint plugin"
-description: "Lint Gadget action files with generated rule reference pages sourced from the plugin code."
-keywords: ["eslint", "gadget", "mintlify", "rules"]
+description: "Catch Gadget action mistakes before they reach production. An opinionated ESLint plugin with 16 rules, auto-fixes, and two ready-made presets."
+keywords: ["eslint", "gadget", "actions", "linting", "plugin"]
 ---
 
-`@aurelienbbn/eslint-plugin-gadget` adds focused ESLint rules for Gadget action files. The docs site keeps the setup guides short and generates the rule reference from the package metadata, configs, and rule tests.
+An opinionated, community-built ESLint plugin that catches common mistakes in [Gadget](https://gadget.dev) action files. It ships 16 rules across three categories, auto-fixes where possible, and offers `recommended` and `strict` presets.
 
 <CardGroup cols={2}>
-  <Card title="Install the plugin" icon="download" href="/getting-started/installation">
-    Add the package to your project and confirm the runtime requirements.
+  <Card title="Install" icon="download" href="/getting-started/installation">
+    Add the package and confirm the requirements.
   </Card>
-  <Card title="Configure ESLint" icon="sliders" href="/getting-started/configuration">
-    Start with the recommended preset or move straight to strict mode.
+  <Card title="Configure" icon="sliders" href="/getting-started/configuration">
+    Pick a preset and start linting in minutes.
   </Card>
-  <Card title="Browse configurations" icon="list-checks" href="/reference/configurations">
-    See every rule included in `recommended` and `strict`.
+  <Card title="Configurations" icon="list-check" href="/reference/configurations">
+    Compare recommended vs. strict severity for every rule.
   </Card>
-  <Card title="Browse generated rules" icon="book-open" href="/reference/rules/index">
-    Read rule descriptions, severities, messages, and examples pulled from the codebase.
+  <Card title="About" icon="circle-info" href="/about">
+    Why this plugin exists and how to contribute.
   </Card>
 </CardGroup>
 
-## What stays generated
+## What it checks
 
-- `docs/reference/configurations.mdx` is generated from `plugin.configs.recommended` and `plugin.configs.strict`.
-- `docs/reference/rules/index.mdx` and each rule page under `docs/reference/rules` are generated from rule metadata plus the first valid and invalid test cases.
-- Re-run `pnpm run docs:generate` after changing rule descriptions, fixability, configs, or tests.
+<CardGroup cols={3}>
+  <Card title="Options and params" icon="gear">
+    Validates that your `options` and `params` exports contain only values Gadget can serialize and process.
+  </Card>
+  <Card title="Runtime safety" icon="shield-check">
+    Prevents empty handlers, missing types, and patterns that cause transaction timeouts or billing surprises.
+  </Card>
+  <Card title="Enqueue safety" icon="arrow-right-to-bracket">
+    Enforces explicit retries and concurrency limits on `api.enqueue()` calls.
+  </Card>
+</CardGroup>
 
-## What stays hand-written
+## Quick start
 
-- Installation, configuration, and scope guidance stay hand-written because they explain how to use the package in a real project.
-- Generated reference pages stay narrow and factual so they can track the source without turning the docs into a README copy.
+```bash
+pnpm add -D @aurelienbbn/eslint-plugin-gadget eslint
+```
 
-## Read the code first
+```js title="eslint.config.js"
+import gadget from "@aurelienbbn/eslint-plugin-gadget";
 
-The source package lives in `packages/eslint-plugin-gadget`. Rule descriptions come from each rule's `meta.docs.description`, while examples come from the existing rule tests. That keeps the docs aligned with the behavior you actually ship.
+export default [gadget.configs.recommended];
+```
+
+Run `eslint .` and the plugin handles the rest - it only activates on Gadget action file paths.

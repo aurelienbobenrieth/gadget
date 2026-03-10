@@ -1,26 +1,31 @@
 ---
 title: "model-action-no-invalid-trigger"
+sidebarTitle: "model-action-no-invalid-trigger"
 description: "Disallow scheduler triggers in model action options."
 keywords: ["eslint", "gadget", "model-action-no-invalid-trigger"]
 ---
 
-This page is generated from the rule metadata and tests.
-
-- Scope: Model action files
-- Type: `problem`
-- Fixable: yes
-- Recommended: `warn`
-- Strict: `error`
-
-## Description
+{/* This page is generated. Run pnpm run docs:generate to update. */}
 
 Disallow scheduler triggers in model action options.
 
+| Property | Value |
+| --- | --- |
+| Type | `problem` |
+| Fixable | Yes (auto-fix available) |
+| Recommended | `warn` |
+| Strict | `error` |
+| Scope | Model action files |
+| Category | Options and params |
+
 ## Reported messages
 
-- `schedulerNotAllowed`: Model actions cannot use scheduler triggers.
+- **`schedulerNotAllowed`**: Model actions cannot use scheduler triggers.
 
-## Invalid example
+## Examples
+
+<Tabs>
+  <Tab title="Incorrect">
 
 ```ts
 export const options: ActionOptions = {
@@ -28,17 +33,22 @@ export const options: ActionOptions = {
 };
 ```
 
-## Auto-fix output
+  </Tab>
+  <Tab title="Auto-fix output">
 
 ```ts
 export const options: ActionOptions = {
 };
 ```
 
-## Valid example
+  </Tab>
+  <Tab title="Correct">
 
 ```ts
 export const options: ActionOptions = {
   triggers: [{ type: "api" }],
 };
 ```
+
+  </Tab>
+</Tabs>
