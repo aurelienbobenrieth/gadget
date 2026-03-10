@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "pnpm --filter @aurelienbbn/eslint-plugin-gadget run build",
+    "changeset": "changeset",
     "ci": "pnpm run build && pnpm run types:check && pnpm run lint:check && pnpm run format:check && pnpm run test && pnpm run test:build",
     "cq:check": "pnpm run types:check && pnpm run lint:check && pnpm run format:check",
     "cq:fix": "pnpm run types:check && pnpm run lint:fix && pnpm run format:fix",
@@ -19,6 +20,8 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
+    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/cli": "^2.30.0",
     "@typescript-eslint/parser": "^8.56.0",
     "@typescript-eslint/rule-tester": "^8.56.0",
     "@typescript-eslint/utils": "^8.56.0",
