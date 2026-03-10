@@ -9,7 +9,7 @@
     "ci": "pnpm run build && pnpm run types:check && pnpm run lint:check && pnpm run format:check && pnpm run test && pnpm run test:build",
     "cq:check": "pnpm run types:check && pnpm run lint:check && pnpm run format:check",
     "cq:fix": "pnpm run types:check && pnpm run lint:fix && pnpm run format:fix",
-    "docs:generate": "pnpm --filter @aurelienbbn/eslint-plugin-gadget run build && node docs/scripts/generate-eslint-plugin-docs.mjs",
+    "docs:generate": "pnpm --filter @aurelienbbn/eslint-plugin-gadget run build && node docs/scripts/generate-eslint-plugin-docs.mjs && oxfmt docs/eslint-plugin/reference/",
     "format:check": "oxfmt --check",
     "format:fix": "oxfmt",
     "lint:check": "oxlint && eslint \"packages/eslint-plugin-gadget/src/**/*.ts\"",
