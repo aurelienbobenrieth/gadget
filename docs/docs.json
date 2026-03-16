@@ -2,6 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "@aurelienbbn/gadget",
+  "description": "Documentation for @aurelienbbn/gadget - ESLint plugin and developer tools for Gadget applications.",
   "colors": {
     "primary": "#4242fc",
     "light": "#4242fc",
@@ -123,7 +124,23 @@
     "library": "lucide"
   },
   "seo": {
-    "indexing": "all"
+    "indexing": "all",
+    "metatags": {
+      "og:site_name": "@aurelienbbn/gadget Docs",
+      "og:image": "https://gadget.aurelienbbn.com/images/og-default.png",
+      "og:type": "website",
+      "og:locale": "en_US",
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@aurelienbbn",
+      "twitter:creator": "@aurelienbbn"
+    }
+  },
+  "thumbnails": {
+    "appearance": "light",
+    "background": "/images/og-background.png",
+    "fonts": {
+      "family": "Inter"
+    }
   },
   "metadata": {
     "timestamp": true
