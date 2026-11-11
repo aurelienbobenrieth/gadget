@@ -3,6 +3,9 @@
 [![CI](https://github.com/aurelienbobenrieth/gadget/actions/workflows/ci.yml/badge.svg)](https://github.com/aurelienbobenrieth/gadget/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+> [!WARNING]
+> **Archived.** [Gadget is winding down](https://gadget.dev/blog/gadget-wind-down): no new apps can be created, and the platform shuts down on March 31, 2027. This repository is read-only and `@aurelienbbn/eslint-plugin-gadget` is deprecated on npm. Existing installs keep working, but no further fixes or releases will ship.
+
 Community tools for the [Gadget](https://gadget.dev) ecosystem. This monorepo ships packages that catch mistakes, enforce conventions, and improve the developer experience for Gadget applications.
 
 > These are **community packages**, not published or endorsed by Gadget. They complement Gadget's own [framework linter](https://docs.gadget.dev/guides/development-tools/framework-linter) with additional static checks.

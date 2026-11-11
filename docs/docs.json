@@ -9,6 +9,10 @@
     "dark": "#4242fc"
   },
   "favicon": "/images/gadget-logo.svg",
+  "banner": {
+    "content": "**Archived:** [Gadget is winding down](https://gadget.dev/blog/gadget-wind-down). These tools are no longer maintained.",
+    "dismissible": false
+  },
   "navigation": {
     "products": [
       {

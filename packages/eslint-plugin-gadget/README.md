@@ -5,6 +5,9 @@
 [![CI](https://github.com/aurelienbobenrieth/gadget/actions/workflows/ci.yml/badge.svg)](https://github.com/aurelienbobenrieth/gadget/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/aurelienbobenrieth/gadget/blob/main/LICENSE)
 
+> [!WARNING]
+> **Archived.** [Gadget is winding down](https://gadget.dev/blog/gadget-wind-down): no new apps can be created, and the platform shuts down on March 31, 2027. This repository is read-only and `@aurelienbbn/eslint-plugin-gadget` is deprecated on npm. Existing installs keep working, but no further fixes or releases will ship.
+
 16 ESLint rules for [Gadget](https://gadget.dev) action files. Validates options, params, timeout configuration, enqueue calls, and runtime patterns before they reach production.
 
 > This is a **community package**, not published or endorsed by Gadget. It complements Gadget's own [framework linter](https://docs.gadget.dev/guides/development-tools/framework-linter) with additional static checks.
